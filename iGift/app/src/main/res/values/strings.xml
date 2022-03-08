@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">iGift</string>
+    <string name="occacsionTitle1">Birthday</string>
+    <string name="occacsionTitle2">Him</string>
+    <string name="occacsionTitle3">Her</string>
+    <string name="occacsionTitle4">Teen</string>
+    <string name="occacsionTitle5">Baby</string>
+    <string name="occacsionTitle7">Anniversary</string>
+    <string name="occacsionTitle8">Valentines</string>
 </resources>
