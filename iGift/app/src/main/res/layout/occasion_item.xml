@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,12 +14,14 @@
     <ImageView
         android:id="@+id/occasionImageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ocassion1" />
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/occasionTitleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:padding="16dp"
+        tools:text="Occasion 1" />
 </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

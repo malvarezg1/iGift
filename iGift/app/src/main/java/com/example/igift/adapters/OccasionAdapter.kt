@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.igift.R
 import com.example.igift.model.Occasion
-import org.w3c.dom.Text
+
 
 class OccasionAdapter(private val context: Context, private val dateset: List<Occasion>): RecyclerView.Adapter<OccasionAdapter.OccasionViewHolder>() {
 

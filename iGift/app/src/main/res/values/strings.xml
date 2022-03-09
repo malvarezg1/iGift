@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">iGift</string>
+    <string name="menu_option1"> Home </string>
+    <string name="menu_option2"> Search </string>
+    <string name="menu_option3"> Crowdfunding </string>
+    <string name="menu_option4"> Profile </string>
+
     <string name="occacsionTitle1">Birthday</string>
     <string name="occacsionTitle2">Him</string>
     <string name="occacsionTitle3">Her</string>
@@ -7,4 +12,10 @@
     <string name="occacsionTitle5">Baby</string>
     <string name="occacsionTitle6">Anniversary</string>
     <string name="occacsionTitle7">Valentines</string>
+
+    <string name="categoryTitle1">Electronics</string>
+    <string name="categoryTitle2">Clothing</string>
+    <string name="categoryTitle3">Furniture</string>
+    <string name="categoryTitle4">Trips</string>
+    <string name="categoryTitle5">Food</string>
 </resources>
