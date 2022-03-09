@@ -1,4 +1,8 @@
 package com.example.igift.model
 
-class ProductCategory {
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+
+class ProductCategory (@StringRes val stringResourceId: Int,  @DrawableRes val imageResouceId: Int){
+
 }
