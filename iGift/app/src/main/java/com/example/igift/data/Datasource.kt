@@ -4,6 +4,7 @@ import android.app.SearchManager
 import com.example.igift.R
 import com.example.igift.model.Occasion
 import com.example.igift.model.ProductCategory
+import com.example.igift.model.User
 
 class Datasource {
 
@@ -25,6 +26,10 @@ class Datasource {
             ProductCategory(R.string.categoryTitle4,R.drawable.airplane),
             ProductCategory(R.string.categoryTitle5,R.drawable.dish),
         )
+    }
+
+    fun loadUser() : User {
+        return User(R.string.profileName, R.string.profileCity, R.drawable.profile)
     }
 
 }

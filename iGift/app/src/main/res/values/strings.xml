@@ -19,4 +19,7 @@
     <string name="categoryTitle4">Trips</string>
     <string name="categoryTitle5">Food</string>
     <string name="check_wish_list_button">Check Wish List</string>
+    
+    <string name="profileName"> Juan Vélez</string>
+    <string name="profileCity"> Bogotá, Colombia</string>
 </resources>
