@@ -10,6 +10,11 @@ import com.example.igift.adapters.CategoryAdapter
 import com.example.igift.adapters.OccasionAdapter
 import com.example.igift.data.Datasource
 
+enum class ProviderType{
+    BASIC
+}
+
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,5 +36,6 @@ class MainActivity : AppCompatActivity() {
         recyclerOccasions.layoutManager = occasionslayoutManager
         recyclerOccasions.adapter = OccasionAdapter(this,occasionData)
         recyclerOccasions.setHasFixedSize(true)
+
     }
 }
