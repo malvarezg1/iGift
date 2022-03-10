@@ -1,8 +1,7 @@
 package com.example.igift
 
-import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,9 +10,9 @@ import com.example.igift.adapters.OccasionAdapter
 import com.example.igift.data.Datasource
 
 class HomeActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
         val categoriesData = Datasource().loadCategories()
         val recycleCategories = findViewById<RecyclerView>(R.id.categoryRecycleView)
         val categaroyLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -29,6 +28,5 @@ class HomeActivity : AppCompatActivity() {
         recyclerOccasions.layoutManager = occasionslayoutManager
         recyclerOccasions.adapter = OccasionAdapter(this,occasionData)
         recyclerOccasions.setHasFixedSize(true)
-
     }
 }
