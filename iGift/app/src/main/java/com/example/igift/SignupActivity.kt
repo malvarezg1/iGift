@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 
@@ -15,6 +16,9 @@ class SignupActivity : AppCompatActivity() {
 
         //Register
         register()
+
+        //Login
+        login()
     }
 
     private fun register(){
@@ -55,11 +59,36 @@ class SignupActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    // En caso de que se haya registrado correctamente mostrar el home de la app
     private fun showHome(email: String, provider: ProviderType){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Registro Realizado")
+        builder.setMessage("Se ha registrado correctamente con el email: $email")
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+
         val homeIntent = Intent(this, MainActivity::class.java).apply {
+
             putExtra("email", email)
             putExtra("provider", provider.name)
         }
+        Thread.sleep(5_000)
         startActivity(homeIntent)
     }
+
+    //En caso de que desee hacer log in en vez de registrarse
+    private fun login(){
+        var loginTextView = findViewById<TextView>(R.id.loginTextView)
+        loginTextView.setOnClickListener{
+            val loginIntent = Intent(this, AuthActivity::class.java).apply {
+            }
+            startActivity(loginIntent)
+        }
+
+    }
+
+
+
+
+
 }

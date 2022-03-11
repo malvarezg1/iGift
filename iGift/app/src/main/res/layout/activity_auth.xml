@@ -16,7 +16,10 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="29dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
@@ -28,6 +31,8 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,8 +46,10 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="472dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="34dp"
         android:gravity="center"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,9 +90,9 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Don't have an account ? Sign-up now !"
+            android:text="Don't have an account? Sign up now !"
             android:textAlignment="center"
-            android:textColor="@color/white" />
+            android:textColor="#FFFFFF" />
 
         <Space
             android:layout_width="match_parent"
