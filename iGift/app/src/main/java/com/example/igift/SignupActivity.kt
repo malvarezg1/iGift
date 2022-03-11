@@ -1,5 +1,5 @@
 package com.example.igift
-
+import android.util.Log
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,7 +28,7 @@ class SignupActivity : AppCompatActivity() {
         signupButton.setOnClickListener{
             if(editTextTextPersonName.text.isNotEmpty() && emailEditText.text.isNotEmpty()
                 && passwordEditText.text.isNotEmpty()  && confirmpasswordEditText.text.isNotEmpty()
-                && editTextTextPersonName.text.equals(confirmpasswordEditText.text)){
+                ){
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailEditText.text.toString(),
                     passwordEditText.text.toString()
                 ).addOnCompleteListener{
