@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="royal_purple">#6852A5</color>
+    <color name="purple_majesty">#9A8AC9</color>
+    <color name="champagne">#EECF93</color>
+    <color name="aero_blue">#D0F5E4</color>
+    <color name="khaki">#C3B299</color>
+
+
     <color name="purple_200">#9A8AC9</color>
     <color name="purple_500">#6852A5</color>
     <color name="purple_700">#FF3700B3</color>

@@ -10,13 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IGift">
         <activity
+            android:name=".AuthActivity"
+            android:exported="true" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".SignupActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
