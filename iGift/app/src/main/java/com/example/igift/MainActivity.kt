@@ -2,34 +2,35 @@ package com.example.igift
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.igift.adapters.CategoryAdapter
-import com.example.igift.adapters.OccasionAdapter
-import com.example.igift.data.Datasource
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val categoriesData = Datasource().loadCategories()
-        val recycleCategories = findViewById<RecyclerView>(R.id.categoryRecycleView)
-        val categaroyLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        recycleCategories.layoutManager = categaroyLayoutManager
-        recycleCategories.adapter = CategoryAdapter(this, categoriesData)
-        recycleCategories.setHasFixedSize(true)
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        val profileFragment=ProfileFragment()
+        val homeFragment = HomeFragment()
 
-
-        val occasionData = Datasource().loadOcasions()
-        val recyclerOccasions = findViewById<RecyclerView>(R.id.occacionsRecyclerView)
-        val occasionslayoutManager = GridLayoutManager(this, 2)
-
-        recyclerOccasions.layoutManager = occasionslayoutManager
-        recyclerOccasions.adapter = OccasionAdapter(this,occasionData)
-        recyclerOccasions.setHasFixedSize(true)
+        setCurrentFragment(homeFragment)
+        bottomNavigationView.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.page_1->setCurrentFragment(homeFragment)
+                R.id.page_2->setCurrentFragment(homeFragment)
+                R.id.page_3 -> setCurrentFragment(homeFragment)
+                R.id.page_4 -> setCurrentFragment(profileFragment)
+            }
+            true
+        }
     }
+
+
+    private fun setCurrentFragment(fragment: Fragment)=
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.flFragment,fragment)
+            commit()
+        }
 }
