@@ -19,12 +19,13 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         val profileFragment=ProfileFragment()
         val homeFragment = HomeFragment()
+        val mapFragemt = MapsFragment()
 
         setCurrentFragment(homeFragment)
         bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.page_1->setCurrentFragment(homeFragment)
-                R.id.page_2->setCurrentFragment(homeFragment)
+                R.id.page_2->setCurrentFragment(mapFragemt)
                 R.id.page_3 -> setCurrentFragment(homeFragment)
                 R.id.page_4 -> setCurrentFragment(profileFragment)
             }
