@@ -31,7 +31,8 @@ class SignupActivity : AppCompatActivity() {
 
         signupButton.setOnClickListener{
             if(editTextTextPersonName.text.isNotEmpty() && emailEditText.text.isNotEmpty()
-                && passwordEditText.text.isNotEmpty()  && confirmpasswordEditText.text.isNotEmpty()
+                && passwordEditText.text.isNotEmpty()  && confirmpasswordEditText.text.isNotEmpty() &&
+                passwordEditText.text == confirmpasswordEditText.text
                 ){
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailEditText.text.toString(),
                     passwordEditText.text.toString()

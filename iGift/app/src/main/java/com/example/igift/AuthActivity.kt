@@ -3,15 +3,27 @@ package com.example.igift
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import org.json.JSONArray
+import org.json.JSONTokener
+import android.content.Context
+import java.io.File
+import java.io.IOException
+
 
 class AuthActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
+        //JSON
 
         //LogIn
         login()
@@ -38,8 +50,6 @@ class AuthActivity : AppCompatActivity() {
                 }
             }
         }
-
-
     }
 
     //Mostrar Alerta en caso de Error
@@ -59,4 +69,17 @@ class AuthActivity : AppCompatActivity() {
         }
         startActivity(homeIntent)
     }
+
+    fun getJsonDataFromAsset(context: Context, fileName: String): String? {
+        val jsonString: String
+        try {
+            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return jsonString
+    }
+
+
 }
