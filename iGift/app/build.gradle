@@ -57,6 +57,9 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
 
+    //Graficas
+    implementation 'de.hdodenhof:circleimageview:1.2.1'
+
 
 
 }
