@@ -14,7 +14,7 @@ import com.example.igift.model.Occasion
 class OccasionAdapter(private val context: Context, private val dateset: List<Occasion>): RecyclerView.Adapter<OccasionAdapter.OccasionViewHolder>() {
 
     class OccasionViewHolder(private val view : View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.occasionTitleView)
+        val textView: TextView = view.findViewById(R.id.occasion_title)
         val imageView : ImageView = view.findViewById(R.id.occasionImageView)
     }
 

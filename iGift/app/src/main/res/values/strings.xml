@@ -20,8 +20,14 @@
     <string name="categoryTitle5">Food</string>
     <string name="check_wish_list_button">Check Wish List</string>
 
+    <string name="prduct_list_name">Wireless headphones-noise cancelling WH-1000XM </string>
+    <string name="prduct_list_brand">Sony </string>
+    <string name="prduct_list_price">5 </string>
+
     <string name="profileName"> Juan Vélez</string>
     <string name="profileCity"> Bogotá, Colombia</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>
