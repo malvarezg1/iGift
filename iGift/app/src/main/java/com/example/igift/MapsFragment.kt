@@ -28,7 +28,7 @@ import java.util.jar.Manifest
 
 class MapsFragment : Fragment() {
 
-
+    /*
     // FusedLocationProviderClient - Main class for receiving location updates.
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
@@ -42,6 +42,7 @@ class MapsFragment : Fragment() {
 
     // This will store current location info
     private var currentLocation: Location? = null
+    */
 
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
@@ -113,6 +114,7 @@ class MapsFragment : Fragment() {
                 }
 
                 */
+
                 for (document in result) {
                     val lat = document.get("coord_y")
                     val lng = document.get("coord_x")
