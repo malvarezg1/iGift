@@ -1,21 +1,18 @@
 package com.example.igift
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.igift.adapters.CategoryAdapter
-import com.example.igift.adapters.OccasionAdapter
+
 import com.example.igift.adapters.RecommendationsAdapter
 import com.example.igift.data.Datasource
 import com.example.igift.databinding.FragmentProfileBinding
-import com.example.igift.model.Occasion
 import com.example.igift.model.Recommendation
 import com.example.igift.model.User
 
@@ -54,6 +51,7 @@ class ProfileFragment : Fragment() {
         val nameTextView = binding.profileName
         val cityTextView = binding.profileCity
         val profileImageView = binding.profileImage
+        val wishListButton = binding.profileWishlisButton
 
         nameTextView.text = resources.getString(user.nameResourceId)
         cityTextView.text = resources.getString(user.cityResourceId)
@@ -64,6 +62,12 @@ class ProfileFragment : Fragment() {
         recyclerRecommendation.layoutManager = recommendationLayoutManager
         recyclerRecommendation.adapter = RecommendationsAdapter(requireContext(), recommendations)
         recyclerRecommendation.setHasFixedSize(true)
+
+        wishListButton.setOnClickListener {
+            val wishLisFragement = WishListFragment()
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.flFragment, wishLisFragement)?.commit()
+        }
     }
 
     override fun onDestroyView() {

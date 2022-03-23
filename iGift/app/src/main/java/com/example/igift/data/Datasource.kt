@@ -3,10 +3,7 @@ package com.example.igift.data
 import android.app.SearchManager
 import android.hardware.camera2.params.RecommendedStreamConfigurationMap
 import com.example.igift.R
-import com.example.igift.model.Occasion
-import com.example.igift.model.ProductCategory
-import com.example.igift.model.Recommendation
-import com.example.igift.model.User
+import com.example.igift.model.*
 
 class Datasource {
 
@@ -37,6 +34,12 @@ class Datasource {
             Recommendation(R.string.occacsionTitle3, R.drawable.occasion3),
             Recommendation(R.string.occacsionTitle4, R.drawable.occasion4),
             Recommendation(R.string.occacsionTitle5, R.drawable.occasion5),
+        )
+    }
+
+    fun loadProducts(): List<Product>{
+        return listOf<Product>(
+            Product(R.string.prduct_list_name,R.string.prduct_list_brand,R.string.prduct_list_price, R.drawable.headphones)
         )
     }
 
