@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 
@@ -15,6 +16,9 @@ class AuthActivity : AppCompatActivity() {
 
         //LogIn
         login()
+
+        //SignUp
+        signup()
     }
 
     private fun login(){
@@ -38,8 +42,17 @@ class AuthActivity : AppCompatActivity() {
                 }
             }
         }
+    }
 
-
+    //En caso de que se desee registrar (Signup)
+    //En caso de que desee hacer log in en vez de registrarse
+    private fun signup(){
+        var signupText = findViewById<TextView>(R.id.signupText)
+        signupText.setOnClickListener{
+            val loginIntent = Intent(this, SignupActivity::class.java).apply {
+            }
+            startActivity(loginIntent)
+        }
     }
 
     //Mostrar Alerta en caso de Error

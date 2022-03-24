@@ -120,15 +120,18 @@ class MapsFragment : Fragment() {
                     val lng = document.get("coord_x")
                     val name = document.get("Name").toString()
                     val direccion = document.get("Direccion").toString()
+                    val zoom = 10f
 
                     val centroCom = LatLng(lat as Double, lng as Double)
                     googleMap.addMarker(MarkerOptions()
                         .position(centroCom)
                         .title(name)
                         .snippet(direccion))
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(centroCom))
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centroCom,zoom))
 
                 }
+                //val bogota = LatLng(74.08175,4.60971)
+
             }
             .addOnFailureListener { exception ->
                 Log.w("Falla:", "Error al traer los datos geolocalizados.", exception)
