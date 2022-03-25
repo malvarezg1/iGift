@@ -52,16 +52,17 @@ class Preferences : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.testButton)
         val email = intent.getStringExtra("email").toString()
+        val name = intent.getStringExtra("name").toString()
 
         button.setOnClickListener{
-            val hasmap =  HashMap<String, Boolean>()
-
+            val hasmap =  HashMap<String,String>()
+            hasmap.put("Name", name)
 
             for(i in 0 until listView.getCount()){
                 val preference = listView.getChildAt(i).findViewById<TextView>(R.id.txtName).text
                 val checkbox = listView.getChildAt(i).findViewById<CheckBox>(R.id.checkBox).isChecked
 
-                hasmap.put(preference.toString(),checkbox)
+                hasmap.put(preference.toString(),checkbox.toString())
             }
 
             db.collection("users").document(email).set(
