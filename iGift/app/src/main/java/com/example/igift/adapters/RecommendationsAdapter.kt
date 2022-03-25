@@ -1,34 +1,42 @@
 package com.example.igift.adapters
 
-import android.content.Context
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.recyclerview.widget.ListAdapter
+import androidx.core.net.toUri
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.igift.R
+import coil.load
+import com.example.igift.databinding.RecommendationItemBinding
 import com.example.igift.model.Recommendation
 
-class RecommendationsAdapter(private val context: Context, private val dateset: List<Recommendation>): RecyclerView.Adapter<RecommendationsAdapter.RecommendationViewHolder>()  {
+class RecommendationsAdapter: ListAdapter<Recommendation, RecommendationsAdapter.RecommendationViewHolder>(DiffCallback){
 
-    class RecommendationViewHolder(private val view : View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.recommendation_name)
-        val imageView : ImageView = view.findViewById(R.id.recommendation_image)
+    class RecommendationViewHolder(private var binding: RecommendationItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind (recommendation: Recommendation){
+            binding.recommendationName.text = recommendation.name
+            val imgUri = recommendation.image_url.toUri().buildUpon().scheme("https").build()
+            binding.recommendationImage.load(imgUri)
+        }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendationsAdapter.RecommendationViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.recommendation_item, parent, false)
-        return RecommendationsAdapter.RecommendationViewHolder(adapterLayout)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):RecommendationViewHolder {
+        return RecommendationViewHolder(RecommendationItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-    override fun onBindViewHolder(holder: RecommendationsAdapter.RecommendationViewHolder, position: Int) {
-        val item = dateset[position]
-        holder.imageView.setImageResource(item.imageResouceId)
-        holder.textView.text = context.resources.getString(item.stringResourceId)
+    override fun onBindViewHolder(holder:RecommendationViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(item)
     }
 
-    override fun getItemCount(): Int {
-        return dateset.size
+    companion object DiffCallback : DiffUtil.ItemCallback<Recommendation>() {
+        override fun areItemsTheSame(oldItem: Recommendation, newItem: Recommendation): Boolean {
+            return oldItem.name == newItem.name
+        }
+
+        override fun areContentsTheSame(oldItem: Recommendation, newItem: Recommendation): Boolean {
+            return oldItem.name == newItem.name
+        }
     }
 }

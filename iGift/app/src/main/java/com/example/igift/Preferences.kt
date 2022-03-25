@@ -3,17 +3,15 @@ package com.example.igift
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
-import androidx.recyclerview.widget.RecyclerView
 import com.example.igift.adapters.CustomAdapter
-import com.example.igift.databinding.ActivityMainBinding
-import com.example.igift.databinding.ActivityPreferencesBinding
 import com.example.igift.model.DataModel
 import com.google.firebase.firestore.FirebaseFirestore
+import org.json.JSONObject
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 
@@ -55,20 +53,20 @@ class Preferences : AppCompatActivity() {
         val name = intent.getStringExtra("name").toString()
 
         button.setOnClickListener{
-            val hasmap =  HashMap<String,String>()
-            hasmap.put("Name", name)
-
+            val hashMap = HashMap<String,Any>()
+            val auxMap = HashMap<String,Boolean>()
+            hashMap.put("name", name)
             for(i in 0 until listView.getCount()){
                 val preference = listView.getChildAt(i).findViewById<TextView>(R.id.txtName).text
                 val checkbox = listView.getChildAt(i).findViewById<CheckBox>(R.id.checkBox).isChecked
 
-                hasmap.put(preference.toString(),checkbox.toString())
+                auxMap.put(preference.toString(),checkbox)
             }
-
+            hashMap.put("image_url", "https://congreso.amecip.com/images/profile_blank.png")
+            hashMap.put("preferences", auxMap)
             db.collection("users").document(email).set(
-                hasmap
+                hashMap
             )
-
             showHome(email)
         }
     }
@@ -79,7 +77,4 @@ class Preferences : AppCompatActivity() {
         }
         startActivity(homeIntent)
     }
-
-
-
 }
