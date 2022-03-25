@@ -18,28 +18,15 @@
         android:theme="@style/Theme.IGift">
         <activity
             android:name=".Preferences"
-            android:exported="true"
-            android:label="@string/title_activity_preferences"
-            android:theme="@style/Theme.IGift.NoActionBar"/>
+            android:exported="true"/>
 
-        <!--
-             TODO: Before you run your application, you need a Google Maps API key.
-
-             To get one, follow the directions here:
-
-                https://developers.google.com/maps/documentation/android-sdk/get-api-key
-
-             Once you have your API key (it starts with "AIza"), define a new property in your
-             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
-             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
-        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAQXuZsMMt25bcf_3mf-uJZZOxK3atsC4Q" />
 
         <activity
             android:name=".AuthActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,6 +46,7 @@
         <activity
             android:name=".SignupActivity"
             android:exported="true" />
+
 
         <meta-data
             android:name="preloaded_fonts"

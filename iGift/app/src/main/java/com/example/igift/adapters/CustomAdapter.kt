@@ -1,6 +1,7 @@
 package com.example.igift.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,22 @@ import android.widget.TextView
 import com.example.igift.R
 import com.example.igift.model.DataModel
 import java.util.*
-class CustomAdapter(private val dataSet: ArrayList<*>, mContext: Context) :
-    ArrayAdapter<Any?>(mContext, R.layout.row_item, dataSet) {
+class CustomAdapter(private val dataSet: ArrayList<DataModel>, mContext: Context) : ArrayAdapter<DataModel>(mContext, R.layout.row_item, dataSet) {
+    /*
+    override fun getView(position: Int,convertView: View?,parent: ViewGroup): View{
+        val inflater : LayoutInflater = LayoutInflater.from(context)
+        val view : View = inflater.inflate(R.layout.row_item,null)
+
+        val textName : TextView = view.findViewById(R.id.txtName)
+        val checkBox : CheckBox = view.findViewById(R.id.checkBox)
+
+        textName.text = dataSet[position].name
+        checkBox.isChecked = dataSet[position].checked
+
+        return view
+    }
+    */
+
     private class ViewHolder {
         lateinit var txtName: TextView
         lateinit var checkBox: CheckBox
@@ -49,4 +64,5 @@ class CustomAdapter(private val dataSet: ArrayList<*>, mContext: Context) :
         viewHolder.checkBox.isChecked = item.checked
         return result
     }
+
 }

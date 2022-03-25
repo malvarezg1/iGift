@@ -38,7 +38,7 @@ class SignupActivity : AppCompatActivity() {
                     passwordEditText.text.toString()
                 ).addOnCompleteListener{
                     if(it.isSuccessful) {
-                        showHome(it.result?.user?.email ?:"",ProviderType.BASIC)
+                        showPreferences(it.result?.user?.email ?:"",ProviderType.BASIC)
                     }else{
                         showAlert()
 
@@ -63,17 +63,16 @@ class SignupActivity : AppCompatActivity() {
     }
 
     // En caso de que se haya registrado correctamente mostrar el home de la app
-    private fun showHome(email: String, provider: ProviderType){
+    private fun showPreferences(email: String, provider: ProviderType){
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Registro Realizado")
         builder.setMessage("Se ha registrado correctamente con el email: $email")
         val dialog: AlertDialog = builder.create()
         dialog.show()
 
-        val homeIntent = Intent(this, MainActivity::class.java).apply {
+        val homeIntent = Intent(this, Preferences::class.java).apply {
 
             putExtra("email", email)
-            putExtra("provider", provider.name)
         }
         Thread.sleep(5_000)
         startActivity(homeIntent)

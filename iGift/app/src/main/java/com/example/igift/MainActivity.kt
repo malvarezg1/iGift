@@ -2,8 +2,11 @@ package com.example.igift
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.FirebaseAuth
 
 enum class ProviderType{
     BASIC
@@ -21,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val mapFragemt = MapsFragment()
 
+        val email = intent.getStringExtra("email").toString()
+
         setCurrentFragment(homeFragment)
         bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
@@ -31,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
     }
 
 
