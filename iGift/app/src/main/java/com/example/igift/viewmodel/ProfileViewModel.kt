@@ -30,10 +30,19 @@ class ProfileViewModel :ViewModel() {
     }
 
     private fun getUserByEmail(userEmail:String) {
-        _recommendations.value = Datasource().loadRecommendations()
         viewModelScope.launch{
             try {
-                _user.value =  Firestore.getUserByEmail(userEmail)
+                var rec_list = mutableListOf<Recommendation>()
+                 val rec_user = Firestore.getUserByEmail(userEmail)
+                if (rec_user != null) {
+                    for (pref in rec_user.preferences.keys){
+                        if(rec_user.preferences.get(pref) == true){
+                            rec_list.add(Datasource().loadRecommendation(pref))
+                        }
+                    }
+                    _user.value =  rec_user!!
+                    _recommendations.value = rec_list
+                }
             }
             catch(e : Exception){
 

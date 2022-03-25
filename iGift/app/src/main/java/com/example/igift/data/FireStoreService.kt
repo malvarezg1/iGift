@@ -3,8 +3,6 @@ package com.example.igift.data
 import android.util.Log
 import com.example.igift.model.Product
 import com.example.igift.model.Product.Companion.toProduct
-import com.example.igift.model.Recommendation
-import com.example.igift.model.User
 import com.example.igift.model.User1
 import com.example.igift.model.User1.Companion.toUser1
 import com.google.firebase.crashlytics.FirebaseCrashlytics
@@ -14,6 +12,8 @@ import kotlinx.coroutines.tasks.await
 
 object Firestore{
     val db = Firebase.firestore
+
+
 
     suspend fun getProducts(category: String) : List<Product> {
         return try {
