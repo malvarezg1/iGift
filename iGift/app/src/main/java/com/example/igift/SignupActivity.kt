@@ -32,18 +32,20 @@ class SignupActivity : AppCompatActivity() {
         signupButton.setOnClickListener{
             if(editTextTextPersonName.text.isNotEmpty() && emailEditText.text.isNotEmpty()
                 && passwordEditText.text.isNotEmpty()  && confirmpasswordEditText.text.isNotEmpty() &&
-                passwordEditText.text == confirmpasswordEditText.text
+                passwordEditText.text.toString() == confirmpasswordEditText.text.toString()
                 ){
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailEditText.text.toString(),
                     passwordEditText.text.toString()
                 ).addOnCompleteListener{
                     if(it.isSuccessful) {
-                        showHome(it.result?.user?.email ?:"",ProviderType.BASIC)
+                        showPreferences(it.result?.user?.email ?:"",editTextTextPersonName.text.toString())
                     }else{
                         showAlert()
 
                     }
                 }
+            }else{
+                showAlert()
             }
         }
 
@@ -61,20 +63,21 @@ class SignupActivity : AppCompatActivity() {
     }
 
     // En caso de que se haya registrado correctamente mostrar el home de la app
-    private fun showHome(email: String, provider: ProviderType){
+    private fun showPreferences(email: String, name: String){
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Registro Realizado")
         builder.setMessage("Se ha registrado correctamente con el email: $email")
         val dialog: AlertDialog = builder.create()
         dialog.show()
 
-        val homeIntent = Intent(this, MainActivity::class.java).apply {
+        val preferencesIntent = Intent(this, Preferences::class.java).apply {
 
             putExtra("email", email)
-            putExtra("provider", provider.name)
+            putExtra("name", name)
+
         }
         Thread.sleep(5_000)
-        startActivity(homeIntent)
+        startActivity(preferencesIntent)
     }
 
     //En caso de que desee hacer log in en vez de registrarse
@@ -85,7 +88,6 @@ class SignupActivity : AppCompatActivity() {
             }
             startActivity(loginIntent)
         }
-
     }
 
 

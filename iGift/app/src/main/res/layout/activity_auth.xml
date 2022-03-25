@@ -10,14 +10,14 @@
 
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/logo"
         android:layout_width="350dp"
         android:layout_height="60dp"
         android:layout_marginStart="34dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="29dp"
         android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/signupImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         app:srcCompat="@drawable/logo" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/signupImage"
         android:layout_width="0dp"
         android:layout_height="300dp"
         android:layout_marginStart="30dp"
@@ -36,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
         app:srcCompat="@drawable/login" />
 
     <LinearLayout
@@ -87,7 +87,7 @@
             android:layout_height="20dp" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/signupText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Don't have an account? Sign up now !"
@@ -103,6 +103,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner_view"
+            android:textColor="@color/purple_majesty"
+            app:backgroundTint="@color/white"
             android:text="Log In" />
 
     </LinearLayout>
