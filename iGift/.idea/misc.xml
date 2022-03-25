@@ -6,21 +6,25 @@
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/drawable/ic_home.xml" value="0.221875" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/activity_home.xml" value="0.20572916666666666" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/activity_product.xml" value="0.16927083333333334" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/activity_profile.xml" value="0.1578125" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/activity_signup.xml" value="0.1" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/category_item.xml" value="0.20572916666666666" />
+        <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/content_product.xml" value="0.16927083333333334" />
+        <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/fragment_first.xml" value="0.16927083333333334" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/fragment_home.xml" value="0.1578125" />
+        <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/fragment_product.xml" value="0.16927083333333334" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/fragment_profile2.xml" value="0.1578125" />
-        <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/fragment_wish_list.xml" value="0.2" />
+        <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/fragment_second.xml" value="0.16927083333333334" />
+        <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/fragment_wish_list.xml" value="0.1" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/home_fragment.xml" value="0.13125" />
+        <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/image_holder.xml" value="0.25416666666666665" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/occasion_item.xml" value="0.176" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/product_list_item.xml" value="0.10081053698074975" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/profile.xml" value="0.20572916666666666" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/layout/recommendation_item.xml" value="0.178125" />
         <entry key="..\:/2022-1/moviles/kotlin/iGift/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20572916666666666" />
-        <entry key="..\:/Users/nicol/OneDrive - Universidad de los Andes/UNIVERSIDAD/2022-1/MOVIL/iGift Kotlin/swift/iGift/app/src/main/res/layout/activity_auth.xml" value="0.18541666666666667" />
-        <entry key="..\:/Users/nicol/OneDrive - Universidad de los Andes/UNIVERSIDAD/2022-1/MOVIL/iGift Kotlin/swift/iGift/app/src/main/res/layout/activity_signup.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/nicol/OneDrive - Universidad de los Andes/UNIVERSIDAD/2022-1/MOVIL/swift/iGift/app/src/main/res/drawable/ic_crowdfunding.xml" value="0.2265" />
         <entry key="..\:/Users/nicol/OneDrive - Universidad de los Andes/UNIVERSIDAD/2022-1/MOVIL/swift/iGift/app/src/main/res/drawable/rounded_corner_view.xml" value="0.2265" />
         <entry key="..\:/Users/nicol/OneDrive - Universidad de los Andes/UNIVERSIDAD/2022-1/MOVIL/swift/iGift/app/src/main/res/layout/activity_auth.xml" value="0.25" />
