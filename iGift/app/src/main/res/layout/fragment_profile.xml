@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.igift.viewmodel.ProfileViewModel" />
+    </data>
+
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    tools:context= "com.example.igift.viewmodel.ProfileViewModel">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -16,25 +23,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileImage"
             android:layout_gravity="center_horizontal"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginBottom="15dp"
-            android:src="@drawable/profile" />
+            app:profileImage="@{viewModel.user}" />
+
         <TextView
             android:id="@+id/profileName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:profileName="@{viewModel.user}" />
 
         <TextView
             android:id="@+id/profileCity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="Bogotá, Colombia"
             android:textAlignment="center" />
 
         <Button
@@ -60,9 +70,10 @@
         android:id="@+id/recommendationsRecycler"
         android:layout_width="409dp"
         android:layout_height="400dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginEnd="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recommendationTitles" />
-
+        app:layout_constraintTop_toBottomOf="@+id/recommendationTitles"
+        app:listData = "@{viewModel.recommendations}"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

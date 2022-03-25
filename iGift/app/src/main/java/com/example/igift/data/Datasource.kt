@@ -28,18 +28,13 @@ class Datasource {
 
     fun loadRecommendations() : List<Recommendation>{
         return listOf<Recommendation>(
-            Recommendation(R.string.occacsionTitle1, R.drawable.ocassion1),
-            Recommendation(R.string.occacsionTitle2, R.drawable.ocassion2),
-            Recommendation(R.string.occacsionTitle3, R.drawable.occasion3),
-            Recommendation(R.string.occacsionTitle4, R.drawable.occasion4),
-            Recommendation(R.string.occacsionTitle5, R.drawable.occasion5),
+            Recommendation("Books", "https://congreso.amecip.com/images/profile_blank.png"),
+            Recommendation("Accesories", "https://congreso.amecip.com/images/profile_blank.png"),
+            Recommendation("Jewelry", "https://congreso.amecip.com/images/profile_blank.png"),
         )
     }
 
-     fun loadProducts() : List<Product>{
-        var products  = mutableListOf<Product>()
-         return products
-    }
+
 
     fun loadUser() : User {
         return User(R.string.profileName, R.string.profileCity, R.drawable.profile)
