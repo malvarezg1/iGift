@@ -1,6 +1,8 @@
 package com.example.igift
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -44,6 +46,14 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val imgTienda = binding.imageTienda
+        
+        imgTienda.setOnClickListener {
+            val mapaFragement = MapsFragment()
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.flFragment, mapaFragement)?.commit()
+        }
+
         val recycleCategories: RecyclerView = binding.categoryRecycleView
         val categoryLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recycleCategories.layoutManager = categoryLayoutManager
@@ -56,6 +66,9 @@ class HomeFragment : Fragment() {
         recyclerOccasions.adapter = OccasionAdapter(requireContext(), occasions)
         recyclerOccasions.setHasFixedSize(true)
     }
+
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
