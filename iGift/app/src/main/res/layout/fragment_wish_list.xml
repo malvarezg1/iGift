@@ -1,17 +1,24 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<data>
+    <variable
+        name="viewModel"
+        type="com.example.igift.viewmodel.WishListViewModel" />
+</data>
+
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    tools:context= "com.example.igift.viewmodel.WishListViewModel">
 
     <TextView
         android:id="@+id/wish_list_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:text="TextView"
+        android:text="Wish List"
         android:textColor="@color/purple_500"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,11 +28,12 @@
         android:id="@+id/wishlist_recycler_view"
         android:layout_width="409dp"
         android:layout_height="666dp"
-        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wish_list_title"
         app:layoutManager="LinearLayoutManager"
-        android:scrollbars="vertical"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:scrollbars="vertical"
+        app:listData="@{viewModel.products}"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

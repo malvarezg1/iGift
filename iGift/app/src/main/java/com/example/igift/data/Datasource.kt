@@ -1,12 +1,11 @@
 package com.example.igift.data
 
-import android.app.SearchManager
-import android.hardware.camera2.params.RecommendedStreamConfigurationMap
+import android.util.Log
 import com.example.igift.R
 import com.example.igift.model.*
+import kotlinx.coroutines.*
 
 class Datasource {
-
     fun loadOcasions(): List<Occasion>{
         return listOf<Occasion>(
             Occasion(R.string.occacsionTitle1, R.drawable.ocassion1),
@@ -37,14 +36,12 @@ class Datasource {
         )
     }
 
-    fun loadProducts(): List<Product>{
-        return listOf<Product>(
-            Product(R.string.prduct_list_name,R.string.prduct_list_brand,R.string.prduct_list_price, R.drawable.headphones)
-        )
+     fun loadProducts() : List<Product>{
+        var products  = mutableListOf<Product>()
+         return products
     }
 
     fun loadUser() : User {
         return User(R.string.profileName, R.string.profileCity, R.drawable.profile)
     }
-
 }

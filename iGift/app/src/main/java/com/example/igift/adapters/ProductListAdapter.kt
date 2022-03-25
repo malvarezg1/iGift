@@ -1,40 +1,45 @@
 package com.example.igift.adapters
 
-import android.content.Context
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.core.net.toUri
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.igift.R
+import com.example.igift.databinding.ProductListItemBinding
 import com.example.igift.model.Product
+import androidx.recyclerview.widget.ListAdapter
+import coil.load
 
-class ProductListAdapter (private val context: Context, private val dataset: List<Product>) : RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {
+class ProductListAdapter : ListAdapter<Product,ProductListAdapter.ProductViewHolder>(DiffCallback) {
 
-    class ProductViewHolder (private val view: View) : RecyclerView.ViewHolder(view){
-        val productName : TextView = view.findViewById(R.id.productListNameImageView)
-        val productImage: ImageView = view.findViewById(R.id.productListImageView)
-        val productPrice: TextView = view.findViewById(R.id.productListPriceImageViewtext)
-        val productBrand: TextView = view.findViewById(R.id.productListBrandImageView)
+    class ProductViewHolder (private var binding : ProductListItemBinding) : RecyclerView.ViewHolder(binding.root){
+        fun bind(product: Product){
+            binding.productListNameImageView.text = product.name
+            binding.productListBrandImageView.text = product.category
+            binding.productListPriceImageViewtext.text = product.price.toString()
+            val imgUri = product.imageUrl.toUri().buildUpon().scheme("https").build()
+            binding.productListImageView.load(imgUri)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.product_list_item, parent, false)
-        return ProductViewHolder(adapterLayout)
+        return ProductViewHolder(ProductListItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        val item = dataset[position]
-        holder.productImage.setImageResource(item.imageResouceId)
-        holder.productName.text = context.resources.getString(item.nameResourceId)
-        holder.productBrand.text = context.resources.getString(item.brandResourceId)
-        holder.productPrice.text = context.resources.getString(item.priceResourceId)
+        val item = getItem(position)
+        //holder.productImage.setImageResource(item.)
+        holder.bind(item)
     }
 
-    override fun getItemCount(): Int {
-      return dataset.size
+    companion object DiffCallback : DiffUtil.ItemCallback<Product>() {
+        override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
+            return oldItem.name == newItem.name
+        }
+
+        override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
+            return oldItem.name == newItem.name
+        }
     }
-
-
 }
