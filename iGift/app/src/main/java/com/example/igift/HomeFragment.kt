@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val imgTienda = binding.imageTienda
-        
+
         imgTienda.setOnClickListener {
             val mapaFragement = MapsFragment()
             activity?.supportFragmentManager?.beginTransaction()
