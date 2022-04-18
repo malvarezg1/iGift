@@ -8,135 +8,139 @@
     android:background="@color/royal_purple"
     tools:context=".SignupActivity">
 
-    <ImageView
-        android:id="@+id/logoSignup"
-        android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="29dp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
-
-    <ImageView
-        android:id="@+id/signupImage"
-        android:layout_width="0dp"
-        android:layout_height="180dp"
-        android:layout_marginStart="78dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="79dp"
-        android:layout_marginBottom="21dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoSignup"
-        app:srcCompat="@drawable/login" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="300dp"
-        android:layout_height="358dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="292dp"
-        android:layout_marginEnd="56dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:height="48dp"
-            android:background="@drawable/rounded_corner_view"
-            android:ems="10"
-            android:hint="name"
-            android:inputType="textPersonName"
-            android:textAlignment="center"
-            android:textColorHint="@color/purple_majesty" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <EditText
-            android:id="@+id/emailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/rounded_corner_view"
-            android:ems="10"
-            android:hint="email"
-            android:inputType="textEmailAddress"
-            android:textAlignment="center"
-            android:textColorHint="@color/purple_majesty" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <EditText
-            android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/rounded_corner_view"
-            android:ems="10"
-            android:hint="password"
-            android:inputType="textPassword"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textColorHint="@color/purple_majesty" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <EditText
-            android:id="@+id/confirmpasswordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/rounded_corner_view"
-            android:ems="10"
-            android:hint="confirm password"
-            android:inputType="textPassword"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textColorHint="@color/purple_majesty" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <TextView
-            android:id="@+id/loginTextView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Have an account ? Login now"
-            android:textAlignment="center"
-            android:textColor="@color/white" />
+            android:orientation="vertical">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            <ImageView
+                android:id="@+id/logoSignup"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="29dp"
+                app:srcCompat="@drawable/logo" />
 
-        <Button
-            android:id="@+id/signupButton"
-            android:layout_width="200dp"
-            android:layout_height="48dp"
-            android:autoText="false"
-            android:background="@drawable/rounded_corner_view"
-            android:minHeight="48dp"
-            android:text="Signup"
-            android:textAlignment="center"
-            android:textColor="@color/purple_majesty"
-            app:backgroundTint="@color/white"
-            app:iconTint="#FFFFFF" />
+            <ImageView
+                android:id="@+id/signupImage"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginStart="78dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="79dp"
+                android:layout_marginBottom="21dp"
+                app:srcCompat="@drawable/login" />
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="34dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:height="48dp"
+                    android:background="@drawable/rounded_corner_view"
+                    android:ems="10"
+                    android:hint="name"
+                    android:inputType="textPersonName"
+                    android:textAlignment="center"
+                    android:textColorHint="@color/purple_majesty" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <EditText
+                    android:id="@+id/emailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/rounded_corner_view"
+                    android:ems="10"
+                    android:hint="email"
+                    android:inputType="textEmailAddress"
+                    android:textAlignment="center"
+                    android:textColorHint="@color/purple_majesty" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/rounded_corner_view"
+                    android:ems="10"
+                    android:hint="password"
+                    android:inputType="textPassword"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/purple_majesty" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <EditText
+                    android:id="@+id/confirmpasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/rounded_corner_view"
+                    android:ems="10"
+                    android:hint="confirm password"
+                    android:inputType="textPassword"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/purple_majesty" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <TextView
+                    android:id="@+id/loginTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Have an account ? Login now"
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <Button
+                    android:id="@+id/signupButton"
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:autoText="false"
+                    android:background="@drawable/rounded_corner_view"
+                    android:minHeight="48dp"
+                    android:text="Signup"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_majesty"
+                    app:backgroundTint="@color/white"
+                    app:iconTint="#FFFFFF" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
