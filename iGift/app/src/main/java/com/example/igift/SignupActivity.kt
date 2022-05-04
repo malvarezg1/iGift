@@ -41,7 +41,6 @@ class SignupActivity : AppCompatActivity() {
                         showPreferences(it.result?.user?.email ?:"",editTextTextPersonName.text.toString())
                     }else{
                         showAlert()
-
                     }
                 }
             }else{
