@@ -3,54 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<com.google.android.material.card.MaterialCardView
-    android:id="@+id/recommendation_card"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp">
-
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/recommendation_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
-
-        <ImageView
-            android:id="@+id/productListImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_marginRight="5dp"
-            tools:srcCompat="@tools:sample/avatars"
-          />
+        android:layout_margin="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
 
-            <TextView
-                android:id="@+id/productListNameImageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/productListImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginRight="5dp"
+                tools:srcCompat="@tools:sample/avatars" />
 
-            <TextView
-                android:id="@+id/productListBrandImageView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#C8C8C8" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/productListPriceImageViewtext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                <TextView
+                    android:id="@+id/productListNameImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/productListBrandImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="#C8C8C8" />
+
+                <TextView
+                    android:id="@+id/productListPriceImageViewtext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

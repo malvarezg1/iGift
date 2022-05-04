@@ -12,7 +12,9 @@ import com.example.igift.databinding.FragmentWishListBinding
 import com.example.igift.viewmodel.ProductViewModel
 
 
-class ProductListFragment : Fragment() {
+class ProductListFragment(
+    private val category: String
+): Fragment() {
     private val viewModel: ProductViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +34,7 @@ class ProductListFragment : Fragment() {
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
+        viewModel.setCategory(category)
 
         binding.wishlistRecyclerView.adapter =  ProductListAdapter()
         return binding.root

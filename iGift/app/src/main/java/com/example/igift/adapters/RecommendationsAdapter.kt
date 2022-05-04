@@ -12,7 +12,7 @@ import com.example.igift.databinding.RecommendationItemBinding
 import com.example.igift.model.Recommendation
 
 class RecommendationsAdapter(
-    private val onItemClicked: () -> Unit
+    private val onItemClicked: (String) -> Unit
 ) : ListAdapter<Recommendation, RecommendationsAdapter.RecommendationViewHolder>(DiffCallback){
 
 
@@ -35,8 +35,7 @@ class RecommendationsAdapter(
         val item = getItem(position)
         holder.bind(item)
         holder.itemView.setOnClickListener{
-            Log.v("CLICK", "Aqui funciona el click")
-            onItemClicked()
+            onItemClicked(item.name)
         }
     }
 

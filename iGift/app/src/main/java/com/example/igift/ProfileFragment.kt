@@ -38,15 +38,16 @@ class ProfileFragment(
         binding.viewModel = viewModel
         val recommendationLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.recommendationsRecycler.layoutManager = recommendationLayoutManager
-        binding.recommendationsRecycler.adapter = RecommendationsAdapter {
-            val productListFragment = ProductListFragment()
+        binding.recommendationsRecycler.adapter = RecommendationsAdapter{ category ->
+
+            val productListFragment = ProductListFragment(category.lowercase())
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.flFragment, productListFragment)?.commit()
         }
         binding.recommendationsRecycler.setHasFixedSize(true)
 
         binding.profileWishlisButton.setOnClickListener {
-            val wishLisFragement = ProductListFragment()
+            val wishLisFragement = ProductListFragment("")
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.flFragment, wishLisFragement)?.commit()
         }
