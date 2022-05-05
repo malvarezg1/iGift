@@ -10,6 +10,7 @@ import com.example.igift.databinding.ProductListItemBinding
 import com.example.igift.model.Product
 import androidx.recyclerview.widget.ListAdapter
 import coil.load
+import com.bumptech.glide.Glide
 
 class ProductListAdapter : ListAdapter<Product,ProductListAdapter.ProductViewHolder>(DiffCallback) {
 
@@ -19,7 +20,10 @@ class ProductListAdapter : ListAdapter<Product,ProductListAdapter.ProductViewHol
             binding.productListBrandImageView.text = product.category
             binding.productListPriceImageViewtext.text = product.price.toString()
             val imgUri = product.imageUrl.toUri().buildUpon().scheme("https").build()
-            binding.productListImageView.load(imgUri)
+
+            Glide.with(binding.root)
+                .load(imgUri)
+                .into(binding.productListImageView);
         }
     }
 
@@ -29,7 +33,6 @@ class ProductListAdapter : ListAdapter<Product,ProductListAdapter.ProductViewHol
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val item = getItem(position)
-        //holder.productImage.setImageResource(item.)
         holder.bind(item)
     }
 

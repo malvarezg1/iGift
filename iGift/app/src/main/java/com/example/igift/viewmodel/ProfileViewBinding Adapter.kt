@@ -1,5 +1,6 @@
 package com.example.igift.viewmodel
 
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -23,6 +24,7 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<Recommendation>?) {
 @BindingAdapter("profileName")
 fun bindName(textView: TextView, data: User1?) {
     if (data != null) {
+        Log.v("THREAD", "data.name")
         textView.text = data.name
     }
 }

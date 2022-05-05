@@ -8,11 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.example.igift.adapters.RecommendationsAdapter
 import com.example.igift.databinding.FragmentProfileBinding
+import com.example.igift.model.User1
 import com.example.igift.viewmodel.ProfileViewModel
+import java.util.*
+
 class ProfileFragment(
     private val email: String
 ): Fragment() {
@@ -22,6 +28,7 @@ class ProfileFragment(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -32,6 +39,11 @@ class ProfileFragment(
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
+
+       /* val nameObserver = Observer<User1> { user ->
+            binding.profileName.text = user.name
+        }
+        viewModel.user.observe(viewLifecycleOwner,nameObserver)*/
 
         // Giving the binding access to the OverviewViewModel
         viewModel.setEmail(email)

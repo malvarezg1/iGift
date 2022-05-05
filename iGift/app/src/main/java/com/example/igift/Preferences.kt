@@ -6,11 +6,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
-import com.example.igift.adapters.CustomAdapter
+import com.example.igift.adapters.PreferencesAdapter
 import com.example.igift.model.DataModel
 import com.google.firebase.firestore.FirebaseFirestore
-import org.json.JSONObject
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
@@ -19,7 +17,7 @@ class Preferences : AppCompatActivity() {
 
     private var dataModel: ArrayList<DataModel>? = null
     private lateinit var listView: ListView
-    private lateinit var adapter: CustomAdapter
+    private lateinit var adapter: PreferencesAdapter
 
     private val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,18 +27,18 @@ class Preferences : AppCompatActivity() {
         title = "KotlinApp"
         listView = findViewById<View>(R.id.listView) as ListView
         dataModel = ArrayList<DataModel>()
-        dataModel!!.add(DataModel("Accesories", false))
+        dataModel!!.add(DataModel("Accessories", false))
         dataModel!!.add(DataModel("Bags", false))
         dataModel!!.add(DataModel("Beauty", false))
         dataModel!!.add(DataModel("House", false))
-        dataModel!!.add(DataModel("Jewlery", false))
+        dataModel!!.add(DataModel("Jewelery", false))
         dataModel!!.add(DataModel("Kids", false))
         dataModel!!.add(DataModel("Men", false))
         dataModel!!.add(DataModel("Products", false))
         dataModel!!.add(DataModel("Shoes", false))
         dataModel!!.add(DataModel("Woman", false))
 
-        adapter = CustomAdapter(dataModel!!, applicationContext)
+        adapter = PreferencesAdapter(dataModel!!, applicationContext)
         listView.adapter = adapter
         listView.onItemClickListener = OnItemClickListener { _, _, position, _ ->
             val dataModel: DataModel = dataModel!![position] as DataModel
