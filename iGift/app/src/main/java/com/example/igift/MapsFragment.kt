@@ -21,6 +21,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.OnCompleteListener
@@ -35,6 +36,7 @@ class MapsFragment : Fragment() {
     private lateinit var mMap : GoogleMap
 
     private fun getLocationAccess(){
+
         //Pintar la ubicación actual
         if (ContextCompat.checkSelfPermission(requireContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -67,13 +69,23 @@ class MapsFragment : Fragment() {
         mMap = googleMap
         getLocationAccess()
 
+        /*
+        //Current location
+        fusedLocationProviderClient.lastlocation.addOnCompleListener(this){
+
+        }
+
+        mMap.addCircle(
+            CircleOptions()
+                .center()
+        )
+
+         */
         //Pintar Centros Comerciales
         val db = FirebaseFirestore.getInstance()
         db.collection("centrosComerciales")
             .get()
             .addOnSuccessListener { result ->
-
-
                 for (document in result) {
                     val lat = document.get("coord_y")
                     val lng = document.get("coord_x")
@@ -87,7 +99,6 @@ class MapsFragment : Fragment() {
                         .title(name)
                         .snippet(direccion))
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centroCom,zoom))
-
                 }
             }
             .addOnFailureListener { exception ->

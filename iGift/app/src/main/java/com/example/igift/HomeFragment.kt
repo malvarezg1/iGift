@@ -23,16 +23,17 @@ class HomeFragment : Fragment() {
     private var _categories: List<ProductCategory>? = null
     private var _occasions: List<Occasion>? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
     private val categories get() = _categories!!
     private val occasions get() = _occasions!!
 
+    //
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
+    //
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -66,8 +67,6 @@ class HomeFragment : Fragment() {
         recyclerOccasions.adapter = OccasionAdapter(requireContext(), occasions)
         recyclerOccasions.setHasFixedSize(true)
     }
-
-
 
 
     override fun onDestroyView() {
