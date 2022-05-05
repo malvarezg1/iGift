@@ -10,26 +10,42 @@ import com.example.igift.model.Product
 import kotlinx.coroutines.launch
 
 
-class WishListViewModel : ViewModel(){
+class ProductViewModel : ViewModel(){
     private val _products = MutableLiveData<List<Product>>()
     private val _imageUrl = MutableLiveData<String>()
+    private val _category = MutableLiveData<String>()
 
     val products : LiveData<List<Product>> = _products
-
+    val category : LiveData<String> = _category
 
     init {
-        Log.v("LOG", "Viewmodel created")
         getWishListProducts()
     }
 
     private fun getWishListProducts() {
         viewModelScope.launch{
             try {
-                _products.value =  Firestore.getProducts("accessories")
+                _products.value =  Firestore.getProductsByCategory("accessories")
             }
             catch(e : Exception){
                 _products.value =  listOf()
             }
+        }
+    }
+    private fun getProductByCategory(category :String){
+        viewModelScope.launch {
+            try {
+                _products.value = Firestore.getProductsByCategory(category)
+            } catch (e: Exception) {
+                _products.value = listOf()
+            }
+        }
+    }
+
+    fun setCategory(value: String){
+        if(value!= "") {
+            _category.value = value
+            getProductByCategory(category.value!!)
         }
     }
 }

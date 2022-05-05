@@ -7,18 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
 import com.example.igift.adapters.ProductListAdapter
-import com.example.igift.data.Datasource
 import com.example.igift.databinding.FragmentWishListBinding
-import com.example.igift.model.Product
-import com.example.igift.viewmodel.WishListViewModel
+import com.example.igift.viewmodel.ProductViewModel
 
 
-
-
-class WishListFragment : Fragment() {
-    private val viewModel: WishListViewModel by viewModels()
+class ProductListFragment(
+    private val category: String
+): Fragment() {
+    private val viewModel: ProductViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +34,7 @@ class WishListFragment : Fragment() {
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
+        viewModel.setCategory(category)
 
         binding.wishlistRecyclerView.adapter =  ProductListAdapter()
         return binding.root

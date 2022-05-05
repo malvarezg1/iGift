@@ -5,13 +5,13 @@
 <data>
     <variable
         name="viewModel"
-        type="com.example.igift.viewmodel.WishListViewModel" />
+        type="com.example.igift.viewmodel.ProductViewModel" />
 </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context= "com.example.igift.viewmodel.WishListViewModel">
+    tools:context= "com.example.igift.viewmodel.ProductViewModel">
 
     <TextView
         android:id="@+id/wish_list_title"

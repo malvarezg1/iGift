@@ -14,8 +14,7 @@ object Firestore{
     val db = Firebase.firestore
 
 
-
-    suspend fun getProducts(category: String) : List<Product> {
+    suspend fun getProductsByCategory(category: String) : List<Product> {
         return try {
             val mapNotNull = db.collection("productos").whereEqualTo("category", category)
                 .get().await().documents.mapNotNull { it.toProduct() }
