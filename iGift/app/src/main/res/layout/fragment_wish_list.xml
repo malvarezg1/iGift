@@ -13,27 +13,16 @@
     android:layout_height="match_parent"
     tools:context= "com.example.igift.viewmodel.ProductViewModel">
 
-    <TextView
-        android:id="@+id/wish_list_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:text="Wish List"
-        android:textColor="@color/purple_500"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/wishlist_recycler_view"
         android:layout_width="409dp"
         android:layout_height="666dp"
+        android:scrollbars="vertical"
+        app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wish_list_title"
-        app:layoutManager="LinearLayoutManager"
-        android:scrollbars="vertical"
-        app:listData="@{viewModel.products}"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:listData="@{viewModel.products}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

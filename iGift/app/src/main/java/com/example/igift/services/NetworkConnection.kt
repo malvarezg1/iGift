@@ -45,7 +45,7 @@ class NetworkConnection(private val context: Context): LiveData<Boolean>() {
                 connectivityManager.unregisterNetworkCallback(connectivityManagerCallback())
             }
             catch(e:Exception){
-                android.util.Log.v("REG", "Could not unregistar")
+                Log.v("REG", "Could not unregistar")
             }
         }
         else{

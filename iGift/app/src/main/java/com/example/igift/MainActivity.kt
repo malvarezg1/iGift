@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 // Views and Fragments
                 val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
                 val personalProfileFragment=ProfileFragment(intent.getStringExtra("email").toString())
-                val guestProfileFragment=ProfileFragment("lorena.ar@gmail.com")
+                val guestProfileFragment=ProfileFragment("martin@gmail.com")
                 val homeFragment = HomeFragment()
 
                 // Variables that come from previous Intents

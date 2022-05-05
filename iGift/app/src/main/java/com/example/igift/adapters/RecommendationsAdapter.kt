@@ -8,6 +8,7 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.bumptech.glide.Glide
 import com.example.igift.databinding.RecommendationItemBinding
 import com.example.igift.model.Recommendation
 
@@ -21,7 +22,9 @@ class RecommendationsAdapter(
         fun bind (recommendation: Recommendation) {
             binding.recommendationName.text = recommendation.name
             val imgUri = recommendation.image_url.toUri().buildUpon().scheme("https").build()
-            binding.recommendationImage.load(imgUri)
+            Glide.with(binding.root)
+                .load(imgUri)
+                .into(binding.recommendationImage);
         }
     }
 

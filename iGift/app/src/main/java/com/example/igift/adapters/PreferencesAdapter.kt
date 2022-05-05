@@ -11,7 +11,7 @@ import android.widget.TextView
 import com.example.igift.R
 import com.example.igift.model.DataModel
 import java.util.*
-class CustomAdapter(private val dataSet: ArrayList<DataModel>, mContext: Context) : ArrayAdapter<DataModel>(mContext, R.layout.row_item, dataSet) {
+class PreferencesAdapter(private val dataSet: ArrayList<DataModel>, mContext: Context) : ArrayAdapter<DataModel>(mContext, R.layout.row_item, dataSet) {
     /*
     override fun getView(position: Int,convertView: View?,parent: ViewGroup): View{
         val inflater : LayoutInflater = LayoutInflater.from(context)

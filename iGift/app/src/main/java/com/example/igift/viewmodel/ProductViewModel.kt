@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.igift.data.Firestore
 import com.example.igift.model.Product
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
@@ -23,21 +24,22 @@ class ProductViewModel : ViewModel(){
     }
 
     private fun getWishListProducts() {
-        viewModelScope.launch{
+        viewModelScope.launch(Dispatchers.IO){
             try {
-                _products.value =  Firestore.getProductsByCategory("accessories")
+                _products.postValue( Firestore.getProductsByCategory("accessories"))
             }
             catch(e : Exception){
-                _products.value =  listOf()
+                _products.postValue(listOf())
             }
         }
     }
+
     private fun getProductByCategory(category :String){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                _products.value = Firestore.getProductsByCategory(category)
+                _products.postValue( Firestore.getProductsByCategory(category))
             } catch (e: Exception) {
-                _products.value = listOf()
+                _products.postValue( listOf())
             }
         }
     }

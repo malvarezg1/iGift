@@ -1,5 +1,6 @@
 package com.example.igift.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import com.example.igift.data.Datasource
 import com.example.igift.data.Firestore
 import com.example.igift.model.Recommendation
 import com.example.igift.model.User1
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ProfileViewModel :ViewModel() {
@@ -25,21 +27,21 @@ class ProfileViewModel :ViewModel() {
     }
 
     private fun getUserByEmail(userEmail:String) {
-        viewModelScope.launch{
+        viewModelScope.launch(Dispatchers.IO){
             try {
                 var recList = mutableListOf<Recommendation>()
-                 val recUser = Firestore.getUserByEmail(userEmail)
+                val recUser = Firestore.getUserByEmail(userEmail)
                 if (recUser != null) {
                     for (pref in recUser.preferences.keys){
                         if(recUser.preferences.get(pref) == true){
                             recList.add(Datasource().loadRecommendation(pref))
                         }
                     }
-                    _user.value = recUser!!
-                    _recommendations.value = recList
+                    _user.postValue(recUser!!)
+                    _recommendations.postValue(recList)
                 }
             }
-            catch(e : Exception){
+            catch(e : Exception) {
 
             }
         }
