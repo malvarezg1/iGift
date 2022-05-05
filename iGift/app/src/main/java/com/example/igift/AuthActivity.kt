@@ -15,20 +15,37 @@ import com.google.firebase.ktx.Firebase
 import org.json.JSONArray
 import org.json.JSONTokener
 import android.content.Context
+import android.text.Editable
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.datastore.core.DataStore
+import androidx.datastore.createDataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.preferencesKey
+import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.example.igift.services.NetworkConnection
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
 
 
 class AuthActivity : AppCompatActivity() {
 
+    //Data Store
+    private lateinit var dataStore: DataStore<Preferences>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //Local Storage
+        dataStore = createDataStore(name = "settings")
 
         // Eventual connectivity
         val networkConnection = NetworkConnection(applicationContext)
@@ -36,6 +53,14 @@ class AuthActivity : AppCompatActivity() {
             if(!isConnected){
                 Log.v("CON","Is  Not Connected")
                 setContentView(R.layout.disconection)
+
+                //Local Storage
+                lifecycleScope.launch{
+                    val emailEditText = findViewById<EditText>(R.id.emailEditText)
+                    val value = read("email")
+                    emailEditText.setText(value?: "Enter Email" , TextView.BufferType.EDITABLE);
+                }
+
             }
             else {
                 Log.v("CON", "Is  Connected")
@@ -45,6 +70,13 @@ class AuthActivity : AppCompatActivity() {
                 login()
                 //SignUp
                 signup()
+
+                //Local Storage
+                lifecycleScope.launch{
+                    val emailEditText = findViewById<EditText>(R.id.emailEditText)
+                    val value = read("email")
+                    emailEditText.setText(value?: "Enter Email" , TextView.BufferType.EDITABLE);
+                }
             }
         })
     }
@@ -56,11 +88,24 @@ class AuthActivity : AppCompatActivity() {
         var passwordEditText = findViewById<EditText>(R.id.passwordEditText)
 
         loginButton.setOnClickListener{
+
+            //Verificacion Firebase
             if( emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()  ){
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(emailEditText.text.toString(),
                     passwordEditText.text.toString()
                 ).addOnCompleteListener{
                     if(it.isSuccessful) {
+
+                        Toast.makeText(applicationContext,"Log In Successfull",Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext,"Email Saved",Toast.LENGTH_LONG).show()
+
+                        //Save to local storage
+                        lifecycleScope.launch{
+                            save(
+                                "email",
+                                emailEditText.text.toString()
+                            )
+                        }
                         showHome(it.result?.user?.email ?:"",ProviderType.BASIC)
                     }else{
                         print(emailEditText.text.toString())
@@ -115,4 +160,19 @@ class AuthActivity : AppCompatActivity() {
         return jsonString
     }
 
+    //Local Storage Save Function
+    private suspend fun save(key:String, value:String){
+        val dataStoreKey = preferencesKey<String>(key)
+        dataStore.edit { settings ->
+            settings[dataStoreKey] = value
+        }
+        Log.d("SAVED",value)
+    }
+
+    //Local Storage Read Function
+    private suspend fun read(key:String): String?{
+        val dataStoreKey = preferencesKey<String>(key)
+        val preferences = dataStore.data.first()
+        return preferences[dataStoreKey]
+    }
 }
