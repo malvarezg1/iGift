@@ -1,5 +1,6 @@
 package com.example.igift
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,10 @@ import com.google.firebase.ktx.Firebase
 import org.json.JSONArray
 import org.json.JSONTokener
 import android.content.Context
+import android.view.MotionEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import com.example.igift.services.NetworkConnection
 import java.io.File
@@ -35,6 +40,7 @@ class AuthActivity : AppCompatActivity() {
             else {
                 Log.v("CON", "Is  Connected")
                 setContentView(R.layout.activity_auth)
+
                 //LogIn
                 login()
                 //SignUp
@@ -43,6 +49,7 @@ class AuthActivity : AppCompatActivity() {
         })
     }
 
+    //Hacer Login
     private fun login(){
         var loginButton = findViewById<Button>(R.id.loginButton)
         var emailEditText = findViewById<EditText>(R.id.emailEditText)
@@ -69,13 +76,14 @@ class AuthActivity : AppCompatActivity() {
     //En caso de que se desee registrar (Signup)
     //En caso de que desee hacer log in en vez de registrarse
     private fun signup(){
-        var signupText = findViewById<TextView>(R.id.signupText)
+        val signupText = findViewById<TextView>(R.id.signupText)
         signupText.setOnClickListener{
             val loginIntent = Intent(this, SignupActivity::class.java).apply {
             }
             startActivity(loginIntent)
         }
     }
+
 
     //Mostrar Alerta en caso de Error
     private fun showAlert(){
@@ -87,6 +95,7 @@ class AuthActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    //Mostrar el home de la APP
     private fun showHome(email: String, provider: ProviderType){
         val homeIntent = Intent(this, MainActivity::class.java).apply {
             putExtra("email", email)
@@ -94,6 +103,7 @@ class AuthActivity : AppCompatActivity() {
         startActivity(homeIntent)
     }
 
+    //Obtener JSOP
     fun getJsonDataFromAsset(context: Context, fileName: String): String? {
         val jsonString: String
         try {
