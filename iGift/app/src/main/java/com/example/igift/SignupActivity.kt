@@ -7,18 +7,32 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.Observer
+import com.example.igift.services.NetworkConnection
 import com.google.firebase.auth.FirebaseAuth
 
 class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
 
-        //Register
-        register()
+        // Eventual connectivity
+        val networkConnection = NetworkConnection(applicationContext)
+        networkConnection.observe(this, Observer { isConnected ->
+            if(!isConnected){
+                Log.v("CON","Is Connected")
+                setContentView(R.layout.disconection)
+            }
+            else {
+                Log.v("CON", "Is Not Connected")
+                setContentView(R.layout.activity_signup)
+                //Register
+                register()
 
-        //Login
-        login()
+                //Login
+                login()
+
+            }
+        })
     }
 
     private fun register(){

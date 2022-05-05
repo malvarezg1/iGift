@@ -14,6 +14,8 @@ import com.google.firebase.ktx.Firebase
 import org.json.JSONArray
 import org.json.JSONTokener
 import android.content.Context
+import androidx.lifecycle.Observer
+import com.example.igift.services.NetworkConnection
 import java.io.File
 import java.io.IOException
 
@@ -23,14 +25,23 @@ class AuthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
-        //JSON
 
-        //LogIn
-        login()
-
-        //SignUp
-        signup()
+        // Eventual connectivity
+        val networkConnection = NetworkConnection(applicationContext)
+        networkConnection.observe(this, Observer { isConnected ->
+            if(!isConnected){
+                Log.v("CON","Is  Not Connected")
+                setContentView(R.layout.disconection)
+            }
+            else {
+                Log.v("CON", "Is  Connected")
+                setContentView(R.layout.activity_auth)
+                //LogIn
+                login()
+                //SignUp
+                signup()
+            }
+        })
     }
 
     private fun login(){
