@@ -44,7 +44,6 @@ class AuthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         //Local Storage
         dataStore = createDataStore(name = "settings")
 
