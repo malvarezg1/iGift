@@ -29,6 +29,7 @@ import com.google.api.Context
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.concurrent.TimeUnit
 import java.util.jar.Manifest
+import kotlin.math.sqrt
 
 class MapsFragment : Fragment() {
 
@@ -87,13 +88,16 @@ class MapsFragment : Fragment() {
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    val lat = document.get("coord_y")
-                    val lng = document.get("coord_x")
+                    var lat = document.get("coord_y")
+                    var lng = document.get("coord_x")
                     val name = document.get("Name").toString()
                     val direccion = document.get("Direccion").toString()
                     val zoom = 10f
-
-                    val centroCom = LatLng(lat as Double, lng as Double)
+                    lat = lat as Double
+                    lng = lng as Double
+                    val dist = sqrt(lat*lat+lng*lng)
+                    Log.v("DIST",name + dist.toString())
+                    val centroCom = LatLng(lat, lng )
                     googleMap.addMarker(MarkerOptions()
                         .position(centroCom)
                         .title(name)

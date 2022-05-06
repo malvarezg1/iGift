@@ -20,7 +20,7 @@ class ProductViewModel : ViewModel(){
     val category : LiveData<String> = _category
 
     init {
-        getWishListProducts()
+
     }
 
     private fun getWishListProducts() {
@@ -48,6 +48,9 @@ class ProductViewModel : ViewModel(){
         if(value!= "") {
             _category.value = value
             getProductByCategory(category.value!!)
+        }
+        else{
+            getWishListProducts()
         }
     }
 }

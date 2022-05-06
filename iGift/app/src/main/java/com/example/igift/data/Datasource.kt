@@ -44,8 +44,8 @@ class Datasource {
                 "House",
                 "https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2019/2/20/0/RX_HGMAG068_WowMarch-07.jpg.rend.hgtvcom.616.462.suffix/1550670129800.jpeg"
             )
-            "Jewelery" ->  Recommendation(
-                "Jewlery",
+            "Jewelry" ->  Recommendation(
+                "Jewelry",
                 "https://www.brides.com/thmb/cNiSduDNgTNCIalEeeemuBKy7OE=/500x350/filters:no_upscale():max_bytes(150000):strip_icc()/image_96ebd88f-e69d-4006-a7c2-9d8ce1d10042_1024x10242x-1fc62a5b3b7746059430a91830cc0a44.jpeg"
             )
             "Kids" ->  Recommendation(

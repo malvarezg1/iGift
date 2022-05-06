@@ -40,14 +40,9 @@ class ProfileFragment(
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
-       /* val nameObserver = Observer<User1> { user ->
-            binding.profileName.text = user.name
-        }
-        viewModel.user.observe(viewLifecycleOwner,nameObserver)*/
-
-        // Giving the binding access to the OverviewViewModel
         viewModel.setEmail(email)
         binding.viewModel = viewModel
+
         val recommendationLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.recommendationsRecycler.layoutManager = recommendationLayoutManager
         binding.recommendationsRecycler.adapter = RecommendationsAdapter{ category ->
