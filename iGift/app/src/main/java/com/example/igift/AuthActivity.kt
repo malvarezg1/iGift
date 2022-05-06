@@ -29,6 +29,8 @@ import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.igift.services.NetworkConnection
+import com.squareup.okhttp.Dispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.io.File
@@ -52,17 +54,16 @@ class AuthActivity : AppCompatActivity() {
                 Log.v("CON","Is  Not Connected")
                 setContentView(R.layout.disconection)
 
-                //Local Storage
-                lifecycleScope.launch{
-                    val emailEditText = findViewById<EditText>(R.id.emailEditText)
-                    val value = read("email")
-                    emailEditText.setText(value?: "Enter Email" , TextView.BufferType.EDITABLE);
-                }
-
             }
             else {
                 Log.v("CON", "Is  Connected")
                 setContentView(R.layout.activity_auth)
+
+                lifecycleScope.launch{
+                    val emailEditText = findViewById<EditText>(R.id.emailEditText)
+                    val value = read("email")
+                    emailEditText.setText(value?: "" , TextView.BufferType.EDITABLE);
+                }
 
                 //LogIn
                 login()
@@ -70,11 +71,7 @@ class AuthActivity : AppCompatActivity() {
                 signup()
 
                 //Local Storage
-                lifecycleScope.launch{
-                    val emailEditText = findViewById<EditText>(R.id.emailEditText)
-                    val value = read("email")
-                    emailEditText.setText(value?: "Enter Email" , TextView.BufferType.EDITABLE);
-                }
+
             }
         })
     }

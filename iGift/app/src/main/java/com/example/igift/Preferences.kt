@@ -31,7 +31,7 @@ class Preferences : AppCompatActivity() {
         dataModel!!.add(DataModel("Bags", false))
         dataModel!!.add(DataModel("Beauty", false))
         dataModel!!.add(DataModel("House", false))
-        dataModel!!.add(DataModel("Jewelery", false))
+        dataModel!!.add(DataModel("Jewelry", false))
         dataModel!!.add(DataModel("Kids", false))
         dataModel!!.add(DataModel("Men", false))
         dataModel!!.add(DataModel("Products", false))
