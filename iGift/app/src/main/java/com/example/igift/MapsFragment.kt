@@ -3,6 +3,7 @@ package com.example.igift
 import android.annotation.SuppressLint
 import android.content.Context.LOCATION_SERVICE
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Location
 import android.location.LocationManager
 import androidx.fragment.app.Fragment
@@ -35,6 +36,33 @@ class MapsFragment : Fragment() {
 
     private val LOCATION_PERMISSION_REQUEST = 1
     private lateinit var mMap : GoogleMap
+    private lateinit var currentLocation : Location
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+        getLastKnownLocation()
+    }
+
+    fun getLastKnownLocation() {
+        Log.v("LOC", "Preguntando Location")
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            Toast.makeText( requireContext(), "No location permission granted", Toast.LENGTH_SHORT ).show()
+        }
+        else {
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location ->
+                    if (location != null) {
+                        currentLocation = location
+                    }
+                }
+        }
+    }
 
     private fun getLocationAccess(){
 
@@ -87,23 +115,41 @@ class MapsFragment : Fragment() {
         db.collection("centrosComerciales")
             .get()
             .addOnSuccessListener { result ->
+                var centroCom = LatLng(0.0, 0.0)
+                val zoom = 10f
                 for (document in result) {
                     var lat = document.get("coord_y")
                     var lng = document.get("coord_x")
                     val name = document.get("Name").toString()
                     val direccion = document.get("Direccion").toString()
-                    val zoom = 10f
                     lat = lat as Double
                     lng = lng as Double
-                    val dist = sqrt(lat*lat+lng*lng)
+                    val dist = sqrt((lat-currentLocation.latitude)*(lat-currentLocation.latitude)+(lng-currentLocation.longitude)*(lng-currentLocation.longitude))
                     Log.v("DIST",name + dist.toString())
-                    val centroCom = LatLng(lat, lng )
-                    googleMap.addMarker(MarkerOptions()
-                        .position(centroCom)
-                        .title(name)
-                        .snippet(direccion))
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centroCom,zoom))
+                    if( dist <= 0.02) {
+                        centroCom = LatLng(lat, lng)
+                        googleMap.addMarker(
+                            MarkerOptions()
+                                .position(centroCom)
+                                .title(name)
+                                .snippet(direccion)
+                        )
+                    }
+
                 }
+                 val circle : CircleOptions = CircleOptions()
+                circle.center(LatLng(currentLocation.latitude, currentLocation.longitude))
+                circle.radius(2000.0)
+                circle.strokeColor(Color.BLUE)
+                val color = FloatArray(3)
+                color[0] = 252.9F
+                color[1] = 94.4F
+                color[2] = 84.7F
+                circle.fillColor(Color.HSVToColor(5,color))
+                circle.strokeWidth(2.0F)
+                googleMap.addCircle(circle)
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centroCom,zoom))
+
             }
             .addOnFailureListener { exception ->
                 Log.w("Falla:", "Error al traer los datos geolocalizados.", exception)

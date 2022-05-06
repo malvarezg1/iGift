@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.igift.databinding.ProductListItemBinding
 import com.example.igift.model.Product
 import androidx.recyclerview.widget.ListAdapter
-import coil.load
 import com.bumptech.glide.Glide
 
 class ProductListAdapter : ListAdapter<Product,ProductListAdapter.ProductViewHolder>(DiffCallback) {
