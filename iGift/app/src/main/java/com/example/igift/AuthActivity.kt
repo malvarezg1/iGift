@@ -52,13 +52,17 @@ class AuthActivity : AppCompatActivity() {
         networkConnection.observe(this, Observer { isConnected ->
             if(!isConnected){
                 Log.v("CON","Is  Not Connected")
+                Toast.makeText(applicationContext,"Connection Lost",Toast.LENGTH_SHORT).show()
+
                 setContentView(R.layout.disconection)
 
             }
             else {
                 Log.v("CON", "Is  Connected")
                 setContentView(R.layout.activity_auth)
+                Toast.makeText(applicationContext,"Connected to Network",Toast.LENGTH_SHORT).show()
 
+                //Local Storage
                 lifecycleScope.launch{
                     val emailEditText = findViewById<EditText>(R.id.emailEditText)
                     val value = read("email")
@@ -70,7 +74,6 @@ class AuthActivity : AppCompatActivity() {
                 //SignUp
                 signup()
 
-                //Local Storage
 
             }
         })

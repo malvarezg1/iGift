@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.igift.data.Firestore
@@ -33,10 +34,14 @@ class MainActivity : AppCompatActivity() {
         networkConnection.observe(this, Observer { isConnected ->
             if(!isConnected){
                 Log.v("CON","Is Connected")
+                Toast.makeText(applicationContext,"Connection Lost", Toast.LENGTH_SHORT).show()
+
                 setContentView(R.layout.disconection)
             }
             else {
                 Log.v("CON", "Is Not Connected")
+                Toast.makeText(applicationContext,"Connected",Toast.LENGTH_SHORT).show()
+
                 setContentView(R.layout.activity_main)
                 // Views and Fragments
                 val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
