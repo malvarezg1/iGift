@@ -1,6 +1,6 @@
 package com.example.igift.adapters
 
-
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
@@ -10,10 +10,12 @@ import com.example.igift.databinding.ProductListItemBinding
 import com.example.igift.model.Product
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
+import com.example.igift.data.PropertiesManager
 
-class ProductListAdapter : ListAdapter<Product,ProductListAdapter.ProductViewHolder>(DiffCallback) {
+class ProductListAdapter( val context : Context) : ListAdapter<Product,ProductListAdapter.ProductViewHolder>(DiffCallback) {
 
-    class ProductViewHolder (private var binding : ProductListItemBinding) : RecyclerView.ViewHolder(binding.root){
+
+    class ProductViewHolder (private var binding : ProductListItemBinding, val context: Context) : RecyclerView.ViewHolder(binding.root){
         fun bind(product: Product){
             binding.productListNameImageView.text = product.name
             binding.productListBrandImageView.text = product.category
@@ -22,17 +24,24 @@ class ProductListAdapter : ListAdapter<Product,ProductListAdapter.ProductViewHol
 
             Glide.with(binding.root)
                 .load(imgUri)
-                .into(binding.productListImageView);
+                .into(binding.productListImageView)
+        }
+
+        fun setListener(context: Context, item: Product?) {
+            binding.heart.setOnClickListener {
+                PropertiesManager.saveOnWishList(context, item!!)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        return ProductViewHolder(ProductListItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return ProductViewHolder(ProductListItemBinding.inflate(LayoutInflater.from(parent.context)), context)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+        holder.setListener(context, item)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Product>() {
