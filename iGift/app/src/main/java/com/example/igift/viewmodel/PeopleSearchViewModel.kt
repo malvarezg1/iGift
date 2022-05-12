@@ -32,4 +32,16 @@ class PeopleSearchViewModel: ViewModel() {
         }
     }
 
+    fun getUsersListByQuery(query : String){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                _persons.postValue(UsersRepository.getUsersByQuery(query))
+            } catch (e: Exception) {
+                _persons.postValue(listOf())
+                Log.v("USERS", e.toString())
+            }
+
+        }
+    }
+
 }
