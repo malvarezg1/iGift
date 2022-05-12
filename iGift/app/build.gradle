@@ -88,7 +88,6 @@ dependencies {
 
     //Glide Cache
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
     // Preferences Datastore (Local Storage)
     implementation "androidx.datastore:datastore-preferences:1.0.0-alpha04"
@@ -100,5 +99,8 @@ dependencies {
     //    Coroutine Lifecycle Scopes
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
     implementation  "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
+
+    // Json String
+    implementation 'com.google.code.gson:gson:2.8.5'
 
 }

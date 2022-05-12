@@ -17,7 +17,6 @@ class RecommendationsAdapter(
 ) : ListAdapter<Recommendation, RecommendationsAdapter.RecommendationViewHolder>(DiffCallback){
 
 
-
     class RecommendationViewHolder(private var binding: RecommendationItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind (recommendation: Recommendation) {
             binding.recommendationName.text = recommendation.name

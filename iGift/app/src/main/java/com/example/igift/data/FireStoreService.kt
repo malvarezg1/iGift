@@ -38,6 +38,18 @@ object Firestore{
         }
     }
 
+    suspend fun getUsers(): List<User1>{
+        return try {
+            val mapNotNull = db.collection("users").get().await().documents.mapNotNull { it.toUser1() }
+            Log.v("USERS", "En el servicio de firebase" + mapNotNull.toString())
+            mapNotNull
+        } catch (e: Exception) {
+            Log.e("Fb Service", "Error getting users", e)
+            FirebaseCrashlytics.getInstance().log("Error getting products")
+            emptyList()
+        }
+    }
+
 /*
     suspend fun getPreferencesFromUser(userEmail: String ) : List<Recommendation> {
         return try {

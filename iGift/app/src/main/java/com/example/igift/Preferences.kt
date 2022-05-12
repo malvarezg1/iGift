@@ -54,6 +54,7 @@ class Preferences : AppCompatActivity() {
             val hashMap = HashMap<String,Any>()
             val auxMap = HashMap<String,Boolean>()
             hashMap.put("name", name)
+            hashMap.put("email", email)
             for(i in 0 until listView.getCount()){
                 val preference = listView.getChildAt(i).findViewById<TextView>(R.id.txtName).text
                 val checkbox = listView.getChildAt(i).findViewById<CheckBox>(R.id.checkBox).isChecked

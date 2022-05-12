@@ -5,7 +5,7 @@ import com.example.igift.data.Firestore
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.firestore.DocumentSnapshot
 
-class User1 (val name : String, val image_url: String ,val preferences : Map<String, Boolean>){
+class User1 (val name : String, val email : String,  val image_url: String ,val preferences : Map<String, Boolean>){
 
     companion object {
         fun DocumentSnapshot.toUser1(): User1? {
@@ -13,7 +13,8 @@ class User1 (val name : String, val image_url: String ,val preferences : Map<Str
                 val name = getString("name")!!
                 val image_url = getString("image_url")!!
                 val preferences  = get("preferences")!! as HashMap<String, Boolean>
-                return User1(name, image_url,preferences)
+                val email = getString("email")!!
+                return User1(name, email , image_url,preferences)
             } catch (e: Exception) {
                 Log.e(TAG, "Error converting user profile", e)
                 FirebaseCrashlytics.getInstance().log("Error converting user profile")

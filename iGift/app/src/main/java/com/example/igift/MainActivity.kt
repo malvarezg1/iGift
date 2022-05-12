@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
         // Eventual connectivity
         val networkConnection = NetworkConnection(applicationContext)
         networkConnection.observe(this, Observer { isConnected ->
@@ -47,6 +45,7 @@ class MainActivity : AppCompatActivity() {
                 val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
                 val personalProfileFragment=ProfileFragment(intent.getStringExtra("email").toString())
                 val guestProfileFragment=ProfileFragment("martin@gmail.com")
+                val peopleSearchFragment = PeopleSearchFragment()
                 val homeFragment = HomeFragment()
 
                 // Variables that come from previous Intents
@@ -57,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                 bottomNavigationView.setOnItemSelectedListener {
                     when(it.itemId){
                         R.id.page_1->setCurrentFragment(homeFragment)
-                        R.id.page_2->setCurrentFragment(guestProfileFragment)
+                        R.id.page_2->setCurrentFragment(peopleSearchFragment)
                         R.id.page_3 -> setCurrentFragment(homeFragment)
                         R.id.page_4 -> setCurrentFragment(personalProfileFragment)
                     }

@@ -7,18 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.igift.adapters.ProductListAdapter
+import com.example.igift.adapters.PeopleAdapter
+import com.example.igift.databinding.FragmentPeopleSearchBinding
 import com.example.igift.databinding.FragmentWishListBinding
+import com.example.igift.viewmodel.PeopleSearchViewModel
 import com.example.igift.viewmodel.ProductViewModel
 
-
-class ProductListFragment(
-    private val category: String
-): Fragment() {
-    private val viewModel: ProductViewModel by viewModels()
+class PeopleSearchFragment : Fragment() {
+    private val viewModel: PeopleSearchViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.v("USERS", "Search fragement created")
     }
 
     override fun onCreateView(
@@ -26,17 +26,23 @@ class ProductListFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.v("LOG", "Inflating view")
-        val binding = FragmentWishListBinding.inflate(inflater, container, false)
+        val binding = FragmentPeopleSearchBinding.inflate(inflater, container, false)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
-        viewModel.setCategory(category)
 
-        binding.wishlistRecyclerView.adapter =  ProductListAdapter(requireContext())
+        binding.peopleSearchRecycler.adapter = PeopleAdapter{email ->
+            val profileFragment = ProfileFragment(email)
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.flFragment, profileFragment)?.commit()
+
+        }
+        Log.v("USERS", "Adapeter binded")
         return binding.root
     }
+
+
 }

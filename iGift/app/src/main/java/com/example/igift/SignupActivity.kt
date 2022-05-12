@@ -94,7 +94,7 @@ class SignupActivity : AppCompatActivity() {
             putExtra("name", name)
 
         }
-        Thread.sleep(5_000)
+        Thread.sleep(1_000)
         startActivity(preferencesIntent)
     }
 
