@@ -34,7 +34,12 @@ class PeopleSearchFragment : Fragment() {
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
-        binding.peopleSearchRecycler.adapter = PeopleAdapter()
+        binding.peopleSearchRecycler.adapter = PeopleAdapter{email ->
+            val profileFragment = ProfileFragment(email)
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.flFragment, profileFragment)?.commit()
+
+        }
         Log.v("USERS", "Adapeter binded")
         return binding.root
     }

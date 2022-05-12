@@ -14,7 +14,9 @@ import com.example.igift.R
 import com.example.igift.databinding.PersonItemBinding
 import com.example.igift.model.User1
 
-class PeopleAdapter() : ListAdapter<User1, PeopleAdapter.PersonViewHolder>(DiffCallback){
+class PeopleAdapter(
+    private val onClickPerson : (String) -> Unit
+) : ListAdapter<User1, PeopleAdapter.PersonViewHolder>(DiffCallback){
 
     class PersonViewHolder( private val binding : PersonItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(person : User1){
@@ -35,6 +37,9 @@ class PeopleAdapter() : ListAdapter<User1, PeopleAdapter.PersonViewHolder>(DiffC
     override fun onBindViewHolder(holder: PeopleAdapter.PersonViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+        holder.itemView.setOnClickListener{
+            onClickPerson(item.email)
+        }
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<User1>() {
