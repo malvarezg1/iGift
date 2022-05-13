@@ -23,8 +23,7 @@
             android:layout_width="309dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:background="@drawable/bg_white_rounded"
-            android:queryHint="Search" />
+            android:background="@drawable/bg_white_rounded" />
 
     </LinearLayout>
 
