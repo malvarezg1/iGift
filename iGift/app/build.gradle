@@ -101,6 +101,6 @@ dependencies {
     implementation  "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
 
     // Json String
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.code.gson:gson:2.8.2'
 
 }

@@ -23,7 +23,6 @@ class PeopleAdapter(
             binding.personNameTextView.text = person.name
             val imgUri = person.image_url.toUri().buildUpon().scheme("https").build()
             Log.v("USERS",imgUri.toString())
-
             Glide.with(binding.root)
                 .load(imgUri)
                 .into(binding.personImageView)

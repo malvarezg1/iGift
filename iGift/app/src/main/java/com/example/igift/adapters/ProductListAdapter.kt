@@ -3,6 +3,7 @@ package com.example.igift.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +30,8 @@ class ProductListAdapter( val context : Context) : ListAdapter<Product,ProductLi
 
         fun setListener(context: Context, item: Product?) {
             binding.heart.setOnClickListener {
-                PropertiesManager.saveOnWishList(context, item!!)
+                PropertiesManager.saveOnWishList(item!!)
+                Toast.makeText(context, "Product added to WishList", Toast.LENGTH_LONG).show()
             }
         }
     }
