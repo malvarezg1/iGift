@@ -49,16 +49,16 @@ class ProductViewModel : ViewModel() {
             _category.value = value
             getProductByCategory(category.value!!)
         } else {
-            /*viewModelScope.launch(Dispatchers.IO) {
+            viewModelScope.launch(Dispatchers.IO) {
                 try {
-                val  getWishListProducts()
                     val list: List<Product> = PropertiesManager.getWhishList()
+                    Log.v("JSON", "List View Model" + list.toString())
                     _products.postValue(list)
                 } catch (e: Exception) {
                     _products.postValue(listOf())
                 }
-            }*/
-        getWishListProducts()
+            }
+
         }
     }
 }

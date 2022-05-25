@@ -11,13 +11,11 @@ object UsersRepository {
 
     suspend fun getUsers(): List<User1> {
         val users = firebaseService.getUsers()
-        Log.v("USERS", users.toString())
         return users
     }
 
     suspend fun getUsersByQuery(query : String) : List<User1>{
         val users = firebaseService.getUsersByQuery(query)
-        Log.v("USERS", users.toString())
         return users
     }
 
