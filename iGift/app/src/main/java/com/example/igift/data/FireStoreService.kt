@@ -63,6 +63,20 @@ object Firestore{
         }
     }
 
+    suspend fun getProductByName(name: String) : Product? {
+        return try {
+            val product = db.collection("productos").whereEqualTo("name", name)
+                .get().await().documents.mapNotNull { it.toProduct() }
+            product[0]
+        } catch (e: Exception) {
+            Log.e("Fb Service", "Error getting product", e)
+            FirebaseCrashlytics.getInstance().log("Error getting products")
+            null
+        }
+    }
+
+
+
 /*
     suspend fun getPreferencesFromUser(userEmail: String ) : List<Recommendation> {
         return try {

@@ -5,60 +5,47 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.igift.data.Datasource
 import com.example.igift.data.Firestore
-import com.example.igift.data.PropertiesManager
 import com.example.igift.model.Product
+import com.example.igift.model.Recommendation
+import com.example.igift.model.User1
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+class ProductViewModel :ViewModel() {
 
-class ProductViewModel : ViewModel() {
-    private val _products = MutableLiveData<List<Product>>()
-    private val _imageUrl = MutableLiveData<String>()
-    private val _category = MutableLiveData<String>()
+    private val _product = MutableLiveData<Product>()
+    private val _name = MutableLiveData<String>()
 
-    val products: LiveData<List<Product>> = _products
-    val category: LiveData<String> = _category
+    val product : LiveData<Product> = _product
+    val name : LiveData<String> = _name
 
     init {
 
     }
 
-    private fun getWishListProducts() {
-        viewModelScope.launch(Dispatchers.IO) {
+    private fun getProductById(name:String) {
+        viewModelScope.launch(Dispatchers.IO){
             try {
-                _products.postValue(Firestore.getProductsByCategory("accessories"))
-            } catch (e: Exception) {
-                _products.postValue(listOf())
-            }
-        }
-    }
 
-    private fun getProductByCategory(category: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                _products.postValue(Firestore.getProductsByCategory(category))
-            } catch (e: Exception) {
-                _products.postValue(listOf())
-            }
-        }
-    }
+                val recProduct = Firestore.getProductByName(name)
+                Log.d("RECPRODUCT", recProduct.toString())
+                if (recProduct != null) {
 
-    fun setCategory(value: String) {
-        if (value != "") {
-            _category.value = value
-            getProductByCategory(category.value!!)
-        } else {
-            /*viewModelScope.launch(Dispatchers.IO) {
-                try {
-                val  getWishListProducts()
-                    val list: List<Product> = PropertiesManager.getWhishList()
-                    _products.postValue(list)
-                } catch (e: Exception) {
-                    _products.postValue(listOf())
+                    _product.postValue(recProduct!!)
                 }
-            }*/
-        getWishListProducts()
+            }
+            catch(e : Exception) {
+
+            }
         }
     }
+
+
+    fun setName(value :String ){
+        _name.value = value
+        getProductById(name.value!!)
+    }
+
 }
