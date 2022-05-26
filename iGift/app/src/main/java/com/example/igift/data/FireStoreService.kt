@@ -1,6 +1,8 @@
 package com.example.igift.data
 
 import android.util.Log
+import com.example.igift.model.Availability
+import com.example.igift.model.Availability.Companion.toAvailability
 import com.example.igift.model.Product
 import com.example.igift.model.Product.Companion.toProduct
 import com.example.igift.model.User1
@@ -71,6 +73,18 @@ object Firestore{
         } catch (e: Exception) {
             Log.e("Fb Service", "Error getting product", e)
             FirebaseCrashlytics.getInstance().log("Error getting products")
+            null
+        }
+    }
+
+    suspend fun getAvailabilitiesByProductName(name: String) : List<Availability>? {
+        return try {
+            val mapNotNull = db.collection("availability").whereEqualTo("name", name)
+                .get().await().documents.mapNotNull { it.toAvailability() }
+            mapNotNull
+        } catch (e: Exception) {
+            Log.e("Fb Service", "Error getting product", e)
+            FirebaseCrashlytics.getInstance().log("Error getting Availabilities of product")
             null
         }
     }

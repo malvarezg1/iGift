@@ -20,19 +20,39 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:text="Name"
+            android:textAlignment="center"
+            android:textColor="@color/purple_majesty"
+            android:textSize="30sp"
             app:productName="@{viewModel.product}" />
 
         <ImageView
             android:id="@+id/productImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="300sp"
+            android:layout_height="300sp"
+            android:layout_gravity="center|center_vertical"
+            android:foregroundGravity="center_vertical|center"
+            android:paddingTop="50dp"
+            android:paddingEnd="50dp"
             app:productImage="@{viewModel.product}" />
 
         <TextView
             android:id="@+id/textWhere"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Where to buy" />
+            android:paddingTop="20dp"
+            android:text="Where to buy"
+            android:textColor="@color/purple_majesty"
+            android:textSize="20sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/availability_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            />
+
+
+
     </LinearLayout>
 
 </layout>
