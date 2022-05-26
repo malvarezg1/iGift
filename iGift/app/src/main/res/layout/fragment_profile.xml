@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -7,6 +10,13 @@
             name="viewModel"
             type="com.example.igift.viewmodel.ProfileViewModel" />
     </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -60,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:text="Recommended categories"
+        android:text="Gifts Juan may like"
         android:textColor="@color/purple_500"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,4 +87,6 @@
         app:layout_constraintTop_toBottomOf="@+id/recommendationTitles"
         app:listData = "@{viewModel.recommendations}"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </layout>
