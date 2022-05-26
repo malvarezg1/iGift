@@ -11,6 +11,7 @@ import com.example.igift.databinding.ProductListItemBinding
 import com.example.igift.model.Product
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.igift.data.PropertiesManager
 
 class ProductListAdapter( val context : Context) : ListAdapter<Product,ProductListAdapter.ProductViewHolder>(DiffCallback) {
@@ -25,6 +26,7 @@ class ProductListAdapter( val context : Context) : ListAdapter<Product,ProductLi
 
             Glide.with(binding.root)
                 .load(imgUri)
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .into(binding.productListImageView)
         }
 
