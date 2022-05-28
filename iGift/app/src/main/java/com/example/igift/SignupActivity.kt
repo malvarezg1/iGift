@@ -9,12 +9,21 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
+import com.example.igift.databinding.ActivityAuthBinding
+import com.example.igift.databinding.ActivitySignupBinding
 import com.example.igift.services.NetworkConnection
 import com.google.firebase.auth.FirebaseAuth
 
 class SignupActivity : AppCompatActivity() {
+
+    // Binding
+    private lateinit var binding: ActivitySignupBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Binding
+        binding = ActivitySignupBinding.inflate(layoutInflater)
 
         // Eventual connectivity
         val networkConnection = NetworkConnection(applicationContext)
@@ -29,24 +38,25 @@ class SignupActivity : AppCompatActivity() {
                 Log.v("CON", "Is Not Connected")
                 Toast.makeText(applicationContext,"Connected",Toast.LENGTH_SHORT).show()
 
-                setContentView(R.layout.activity_signup)
+                setContentView(binding.root)
+                binding.signupImage.setImageResource(R.drawable.signup)
                 //Register
-                register()
+                register(binding)
 
                 //Login
-                login()
+                login(binding)
 
             }
         })
     }
 
-    private fun register(){
+    private fun register(binding: ActivitySignupBinding){
 
-        var signupButton = findViewById<Button>(R.id.signupButton)
-        var editTextTextPersonName = findViewById<EditText>(R.id.editTextTextPersonName)
-        var emailEditText = findViewById<EditText>(R.id.emailEditText)
-        var passwordEditText = findViewById<EditText>(R.id.passwordEditText)
-        var confirmpasswordEditText = findViewById<EditText>(R.id.confirmpasswordEditText)
+        var signupButton = binding.signupButton
+        var editTextTextPersonName = binding.editTextTextPersonName
+        var emailEditText = binding.emailEditText
+        var passwordEditText = binding.passwordEditText
+        var confirmpasswordEditText = binding.confirmpasswordEditText
 
         signupButton.setOnClickListener{
             if(editTextTextPersonName.text.isNotEmpty() && emailEditText.text.isNotEmpty()
@@ -99,8 +109,8 @@ class SignupActivity : AppCompatActivity() {
     }
 
     //En caso de que desee hacer log in en vez de registrarse
-    private fun login(){
-        var loginTextView = findViewById<TextView>(R.id.loginTextView)
+    private fun login(binding: ActivitySignupBinding){
+        var loginTextView = binding.loginTextView
         loginTextView.setOnClickListener{
             val loginIntent = Intent(this, AuthActivity::class.java).apply {
             }
