@@ -2,22 +2,16 @@ package com.example.igift
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import com.example.igift.data.Firestore
-import com.example.igift.data.PropertiesManager
+import com.example.igift.data.WishlistPropertiesManager
 import com.example.igift.data.WishlistRepository
 import com.example.igift.services.NetworkConnection
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 enum class ProviderType{
@@ -49,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 lifecycleScope.launch(Dispatchers.IO){
                     val wishlist = WishlistRepository.downloadListFromFirebase(intent.getStringExtra("email").toString())
                     Log.v("WL",  "Este :"+wishlist.toString())
-                    PropertiesManager.createWishListStorage(applicationContext, wishlist.toMutableList())
+                    WishlistPropertiesManager.createWishListStorage(applicationContext, wishlist.toMutableList())
                 }
 
                 // Views and Fragments

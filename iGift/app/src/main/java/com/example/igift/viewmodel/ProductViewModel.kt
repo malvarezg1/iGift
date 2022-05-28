@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.igift.data.Firestore
-import com.example.igift.data.PropertiesManager
+import com.example.igift.data.WishlistPropertiesManager
 import com.example.igift.model.Product
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -51,7 +51,7 @@ class ProductViewModel : ViewModel() {
         } else {
             viewModelScope.launch(Dispatchers.IO) {
                 try {
-                    val list: List<Product> = PropertiesManager.getWhishList()
+                    val list: List<Product> = WishlistPropertiesManager.recoverWishListFromLocalStorage()
                     Log.v("JSON", "List View Model" + list.toString())
                     _products.postValue(list)
                 } catch (e: Exception) {
