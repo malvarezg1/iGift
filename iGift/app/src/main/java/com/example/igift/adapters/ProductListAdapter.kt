@@ -12,7 +12,7 @@ import com.example.igift.model.Product
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.igift.data.PropertiesManager
+import com.example.igift.data.WishlistPropertiesManager
 
 class ProductListAdapter( val context : Context) : ListAdapter<Product,ProductListAdapter.ProductViewHolder>(DiffCallback) {
 
@@ -32,7 +32,7 @@ class ProductListAdapter( val context : Context) : ListAdapter<Product,ProductLi
 
         fun setListener(context: Context, item: Product?) {
             binding.heart.setOnClickListener {
-                PropertiesManager.saveOnWishList(item!!)
+                WishlistPropertiesManager.saveWishListOnLocalStorage(item!!)
                 Toast.makeText(context, "Product added to WishList", Toast.LENGTH_LONG).show()
             }
         }

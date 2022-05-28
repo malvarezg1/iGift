@@ -2,28 +2,25 @@ package com.example.igift.data
 
 import android.content.Context
 import android.util.Log
-import androidx.core.graphics.scaleMatrix
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.example.igift.model.Product
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
-import androidx.lifecycle.LifecycleCoroutineScope
-import com.google.firebase.ktx.Firebase
+import com.example.igift.model.User1
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.first
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import kotlinx.coroutines.CoroutineScope
 
-object PropertiesManager {
-
+object WishlistPropertiesManager {
 
     private lateinit var dataStore: DataStore<Preferences>
 
+    //Whishlist on Local Storage
     fun createWishListStorage(context : Context, list : MutableList<Product>){
         dataStore = context.createDataStore(name = "wishList")
         GlobalScope.launch(Dispatchers.IO) {
@@ -32,10 +29,9 @@ object PropertiesManager {
         }
     }
 
-    //Local Storage
-    fun saveOnWishList(product: Product){
+    fun saveWishListOnLocalStorage(product: Product){
         GlobalScope.launch(Dispatchers.IO) {
-            val list = getWhishList()
+            val list = recoverWishListFromLocalStorage()
             list.add(product)
             val jsonString= Gson().toJson(list).toString()
             save("wishList", jsonString)
@@ -43,7 +39,7 @@ object PropertiesManager {
         }
     }
 
-    suspend fun getWhishList(): MutableList<Product>{
+    suspend fun recoverWishListFromLocalStorage(): MutableList<Product>{
         val value = read("wishList")
         Log.v("JSON", "recuperado" + value)
         val arrayProductType = object : TypeToken<MutableList<Product>>() {}.type
@@ -51,7 +47,6 @@ object PropertiesManager {
         Log.v("JSON", "retornado" + productList.toString())
         return productList
     }
-
 
     private suspend fun read(key:String): String? {
         val dataStoreKey = preferencesKey<String>(key)
