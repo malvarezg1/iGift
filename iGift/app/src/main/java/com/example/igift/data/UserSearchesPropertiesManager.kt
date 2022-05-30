@@ -23,25 +23,34 @@ object UserSearchesPropertiesManager {
     // Recent Searches on Local Storage
     fun createRecentSearchesStorage(context : Context){
         dataStore = context.createDataStore(name = "recentUserSearches")
+        val jsonString= Gson().toJson(emptyList<User1>()).toString()
+        GlobalScope.launch(Dispatchers.IO) {
+        save("recentUserSearches", jsonString)
+        }
+
     }
 
     fun saveRecentSearchesOnLocalStorage(user: User1){
         GlobalScope.launch(Dispatchers.IO) {
             val list = recoverRecentSearchesFromLocalStorage()
+            list.remove(user)
             list.add(user)
+
             val jsonString= Gson().toJson(list).toString()
             save("recentUserSearches", jsonString)
-            Log.v("JSON", "Saved on RS ")
+
         }
     }
 
     suspend fun recoverRecentSearchesFromLocalStorage() : MutableList<User1>{
         val value = read("recentUserSearches")
         Log.v("JSON", "recuperado" + value)
-        val arrayProductType = object : TypeToken<MutableList<User1>>() {}.type
-        val usersList : MutableList<User1> = Gson().fromJson(value, arrayProductType)
-        Log.v("JSON", "retornado" + usersList.toString())
-        return usersList
+        var list : MutableList<User1> = mutableListOf()
+        if( value !=null){
+            val arrayProductType = object : TypeToken<MutableList<User1>>() {}.type
+             list = Gson().fromJson(value, arrayProductType)
+        }
+        return list
     }
 
 

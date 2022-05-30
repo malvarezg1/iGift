@@ -32,7 +32,10 @@ object WishlistPropertiesManager {
     fun saveWishListOnLocalStorage(product: Product){
         GlobalScope.launch(Dispatchers.IO) {
             val list = recoverWishListFromLocalStorage()
-            list.add(product)
+            Log.v("EV", list.contains(product).toString())
+            if(!list.contains(product)){
+                list.add(product)
+            }
             val jsonString= Gson().toJson(list).toString()
             save("wishList", jsonString)
             Log.v("JSON", "Saved on WL ")

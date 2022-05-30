@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import com.example.igift.data.UserSearchesPropertiesManager
 import com.example.igift.data.WishlistPropertiesManager
 import com.example.igift.data.WishlistRepository
 import com.example.igift.services.NetworkConnection
@@ -44,6 +45,11 @@ class MainActivity : AppCompatActivity() {
                     val wishlist = WishlistRepository.downloadListFromFirebase(intent.getStringExtra("email").toString())
                     Log.v("WL",  "Este :"+wishlist.toString())
                     WishlistPropertiesManager.createWishListStorage(applicationContext, wishlist.toMutableList())
+                }
+
+                // Recent Searches Properties
+                lifecycleScope.launch(Dispatchers.IO){
+                    UserSearchesPropertiesManager.createRecentSearchesStorage(applicationContext)
                 }
 
                 // Views and Fragments

@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.igift.R
+import com.example.igift.data.UserSearchesPropertiesManager
 import com.example.igift.databinding.PersonItemBinding
 import com.example.igift.model.User1
 
@@ -22,9 +24,9 @@ class PeopleAdapter(
         fun bind(person : User1){
             binding.personNameTextView.text = person.name
             val imgUri = person.image_url.toUri().buildUpon().scheme("https").build()
-            Log.v("USERS",imgUri.toString())
             Glide.with(binding.root)
                 .load(imgUri)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.personImageView)
         }
     }
@@ -38,6 +40,7 @@ class PeopleAdapter(
         holder.bind(item)
         holder.itemView.setOnClickListener{
             onClickPerson(item.email)
+            UserSearchesPropertiesManager.saveRecentSearchesOnLocalStorage(item)
         }
     }
 
