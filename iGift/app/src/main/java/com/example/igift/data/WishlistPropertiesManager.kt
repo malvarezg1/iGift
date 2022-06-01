@@ -8,33 +8,43 @@ import com.example.igift.model.Product
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
-import com.google.gson.Gson
+import com.example.igift.model.User1
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.first
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
-object PropertiesManager {
+object WishlistPropertiesManager {
 
-    lateinit var productList: MutableList<Product>
     private lateinit var dataStore: DataStore<Preferences>
 
-    //Local Storage
-    fun saveOnWishList(context: Context, product: Product){
+    //Whishlist on Local Storage
+    fun createWishListStorage(context : Context, list : MutableList<Product>){
         dataStore = context.createDataStore(name = "wishList")
+        GlobalScope.launch(Dispatchers.IO) {
+            val jsonString = Gson().toJson(list).toString()
+            save("wishList", jsonString)
+        }
+    }
 
-        val jsonString= Gson().toJson(product).toString()
-        Log.v("JSON", jsonString)
-        GlobalScope.launch(Dispatchers.IO){
+    fun saveWishListOnLocalStorage(product: Product){
+        GlobalScope.launch(Dispatchers.IO) {
+            val list = recoverWishListFromLocalStorage()
+            list.add(product)
+            val jsonString= Gson().toJson(list).toString()
             save("wishList", jsonString)
             Log.v("JSON", "Saved on WL ")
         }
     }
 
-    suspend fun getWhishList(): List<Product>{
+    suspend fun recoverWishListFromLocalStorage(): MutableList<Product>{
         val value = read("wishList")
-        val product : Product = Gson().fromJson(value, Product::class.java)
-        productList.add(product)
+        Log.v("JSON", "recuperado" + value)
+        val arrayProductType = object : TypeToken<MutableList<Product>>() {}.type
+        val productList : MutableList<Product> = Gson().fromJson(value, arrayProductType)
+        Log.v("JSON", "retornado" + productList.toString())
         return productList
     }
 

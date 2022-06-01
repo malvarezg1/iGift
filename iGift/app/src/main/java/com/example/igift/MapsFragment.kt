@@ -117,14 +117,17 @@ class MapsFragment : Fragment() {
             .addOnSuccessListener { result ->
                 var centroCom = LatLng(0.0, 0.0)
                 val zoom = 10f
+                var lat : Double
+                var lng : Double
+                var name : String
+                var direccion : String
+                var dist : Double
                 for (document in result) {
-                    var lat = document.get("coord_y")
-                    var lng = document.get("coord_x")
-                    val name = document.get("Name").toString()
-                    val direccion = document.get("Direccion").toString()
-                    lat = lat as Double
-                    lng = lng as Double
-                    val dist = sqrt((lat-currentLocation.latitude)*(lat-currentLocation.latitude)+(lng-currentLocation.longitude)*(lng-currentLocation.longitude))
+                    lat = document.get("coord_y") as Double
+                    lng = document.get("coord_x") as Double
+                    name = document.get("Name").toString()
+                    direccion = document.get("Direccion").toString()
+                    dist = sqrt((lat-currentLocation.latitude)*(lat-currentLocation.latitude)+(lng-currentLocation.longitude)*(lng-currentLocation.longitude))
                     Log.v("DIST",name + dist.toString())
                     if( dist <= 0.02) {
                         centroCom = LatLng(lat, lng)

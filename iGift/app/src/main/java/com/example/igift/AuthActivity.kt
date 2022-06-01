@@ -5,9 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -16,10 +13,13 @@ import org.json.JSONArray
 import org.json.JSONTokener
 import android.content.Context
 import android.text.Editable
+import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -28,6 +28,8 @@ import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import com.example.igift.databinding.ActivityAuthBinding
+import com.example.igift.databinding.FragmentProfileBinding
 import com.example.igift.services.NetworkConnection
 import com.squareup.okhttp.Dispatcher
 import kotlinx.coroutines.Dispatchers
@@ -42,7 +44,15 @@ class AuthActivity : AppCompatActivity() {
     //Data Store
     private lateinit var dataStore: DataStore<Preferences>
 
+    //Binding
+    private lateinit var binding: ActivityAuthBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        // Binding
+        binding = ActivityAuthBinding.inflate(layoutInflater)
+
         super.onCreate(savedInstanceState)
         //Local Storage
         dataStore = createDataStore(name = "settings")
@@ -59,31 +69,32 @@ class AuthActivity : AppCompatActivity() {
             }
             else {
                 Log.v("CON", "Is  Connected")
-                setContentView(R.layout.activity_auth)
+                setContentView(binding.root)
+
+                binding.signupImage.setImageResource(R.drawable.login)
                 Toast.makeText(applicationContext,"Connected to Network",Toast.LENGTH_SHORT).show()
 
                 //Local Storage
                 lifecycleScope.launch{
-                    val emailEditText = findViewById<EditText>(R.id.emailEditText)
+                    val emailEditText = binding.emailEditText
                     val value = read("email")
                     emailEditText.setText(value?: "" , TextView.BufferType.EDITABLE);
                 }
 
                 //LogIn
-                login()
+                login(binding)
                 //SignUp
-                signup()
-
+                signup(binding)
 
             }
         })
     }
 
     //Hacer Login
-    private fun login(){
-        var loginButton = findViewById<Button>(R.id.loginButton)
-        var emailEditText = findViewById<EditText>(R.id.emailEditText)
-        var passwordEditText = findViewById<EditText>(R.id.passwordEditText)
+    private fun login(binding: ActivityAuthBinding){
+        var loginButton = binding.loginButton
+        var emailEditText = binding.emailEditText
+        var passwordEditText = binding.passwordEditText
 
         loginButton.setOnClickListener{
 
@@ -118,8 +129,8 @@ class AuthActivity : AppCompatActivity() {
 
     //En caso de que se desee registrar (Signup)
     //En caso de que desee hacer log in en vez de registrarse
-    private fun signup(){
-        val signupText = findViewById<TextView>(R.id.signupText)
+    private fun signup(binding: ActivityAuthBinding){
+        val signupText = binding.signupText
         signupText.setOnClickListener{
             val loginIntent = Intent(this, SignupActivity::class.java).apply {
             }

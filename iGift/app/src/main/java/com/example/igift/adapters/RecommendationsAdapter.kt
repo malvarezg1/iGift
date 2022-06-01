@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.igift.databinding.RecommendationItemBinding
 import com.example.igift.model.Recommendation
 
@@ -23,6 +24,7 @@ class RecommendationsAdapter(
             val imgUri = recommendation.image_url.toUri().buildUpon().scheme("https").build()
             Glide.with(binding.root)
                 .load(imgUri)
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .into(binding.recommendationImage);
         }
     }

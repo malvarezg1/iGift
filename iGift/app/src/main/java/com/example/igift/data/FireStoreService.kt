@@ -7,13 +7,15 @@ import com.example.igift.model.Product
 import com.example.igift.model.Product.Companion.toProduct
 import com.example.igift.model.User1
 import com.example.igift.model.User1.Companion.toUser1
+import com.example.igift.model.Wishlist
+import com.example.igift.model.Wishlist.Companion.toWishlist
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 
 object Firestore{
-    val db = Firebase.firestore
+     private val db = Firebase.firestore
 
 
     suspend fun getProductsByCategory(category: String) : List<Product> {
@@ -65,6 +67,7 @@ object Firestore{
         }
     }
 
+<<<<<<< HEAD
     suspend fun getProductByName(name: String) : Product? {
         return try {
             val product = db.collection("productos").whereEqualTo("name", name)
@@ -85,10 +88,22 @@ object Firestore{
         } catch (e: Exception) {
             Log.e("Fb Service", "Error getting product", e)
             FirebaseCrashlytics.getInstance().log("Error getting Availabilities of product")
+=======
+    suspend fun getWhishlist(email:String) : Wishlist?{
+        return try{
+            Log.v("WL", email)
+            val mapNotNull = db.collection("wishlists").document(email).get().await().toWishlist()
+            Log.v("WL", mapNotNull.toString())
+            mapNotNull
+        }
+        catch (e: Exception) {
+            Log.e("WL", "Error posting whishlist", e)
+>>>>>>> 1ca790dae7d2f01f26b0a1b68667e57841e551cc
             null
         }
     }
 
+<<<<<<< HEAD
 
 
 /*
@@ -99,8 +114,35 @@ object Firestore{
         } catch (e: Exception) {
             Log.e("Fb Service", "Error getting user friends", e)
             FirebaseCrashlytics.getInstance().log("Error getting user friends")
+=======
+     fun postWhishlist(email: String) {
+        try {
+            val data = hashMapOf(
+                "email" to email,
+                "products" to emptyList<Product>()
+            )
+            val wishListRef = db.collection("wishlists").document(email)
+                wishListRef.set(data).addOnSuccessListener { documentReference ->
+                Log.d("WL", "DocumentSnapshot written with ID: email ")
+            }
+            Log.v("WL", "Saving WishList On Firebase")
+        } catch (e: Exception) {
+            Log.e("WL", "Error posting whishlist", e)
+            FirebaseCrashlytics.getInstance().log("Error getting products")
         }
     }
-     */
+
+    suspend fun updateWishList(email : String, list: MutableList<Product>){
+        try {
+            val wishList = db.collection("wishlists").document(email)
+            wishList.update("products", list)
+                .addOnSuccessListener { Log.d("WL", "DocumentSnapshot successfully updated!") }
+        }
+        catch(e : Exception){
+            Log.e("WL", "Error updating whishlist", e)
+            FirebaseCrashlytics.getInstance().log("Error getting products")
+>>>>>>> 1ca790dae7d2f01f26b0a1b68667e57841e551cc
+        }
+    }
 }
 

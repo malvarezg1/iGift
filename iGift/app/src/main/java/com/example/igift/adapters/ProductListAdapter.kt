@@ -3,6 +3,7 @@ package com.example.igift.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,8 @@ import com.example.igift.databinding.ProductListItemBinding
 import com.example.igift.model.Product
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
-import com.example.igift.data.PropertiesManager
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.igift.data.WishlistPropertiesManager
 
 class ProductListAdapter( val context : Context,
 val onClickProduct : (String) -> Unit) : ListAdapter<Product,ProductListAdapter.ProductViewHolder>(DiffCallback) {
@@ -25,12 +27,14 @@ val onClickProduct : (String) -> Unit) : ListAdapter<Product,ProductListAdapter.
 
             Glide.with(binding.root)
                 .load(imgUri)
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .into(binding.productListImageView)
         }
 
         fun setListener(context: Context, item: Product?) {
             binding.heart.setOnClickListener {
-                PropertiesManager.saveOnWishList(context, item!!)
+                WishlistPropertiesManager.saveWishListOnLocalStorage(item!!)
+                Toast.makeText(context, "Product added to WishList", Toast.LENGTH_LONG).show()
             }
         }
     }
