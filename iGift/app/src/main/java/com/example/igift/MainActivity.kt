@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.igift.data.UserSearchesPropertiesManager
+import com.example.igift.data.UsersRepository
 import com.example.igift.data.WishlistPropertiesManager
 import com.example.igift.data.WishlistRepository
 import com.example.igift.services.NetworkConnection
@@ -47,9 +48,10 @@ class MainActivity : AppCompatActivity() {
                     WishlistPropertiesManager.createWishListStorage(applicationContext, wishlist.toMutableList())
                 }
 
-                // Recent Searches Properties
+                // Recent Searches Propertie
                 lifecycleScope.launch(Dispatchers.IO){
-                    UserSearchesPropertiesManager.createRecentSearchesStorage(applicationContext)
+                    val searchesList = UsersRepository.downloadSearchesFromFirebase(intent.getStringExtra("email").toString())
+                    UserSearchesPropertiesManager.createRecentSearchesStorage(applicationContext, searchesList)
                 }
 
                 // Views and Fragments
@@ -80,6 +82,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         WishlistRepository.uploadWishListToFirebase(intent.getStringExtra("email").toString())
+        UsersRepository.uploadRecentSearchesToFirebase(intent.getStringExtra("email").toString())
     }
 
 

@@ -21,9 +21,9 @@ object UserSearchesPropertiesManager {
     private lateinit var dataStore: DataStore<Preferences>
 
     // Recent Searches on Local Storage
-    fun createRecentSearchesStorage(context : Context){
+    fun createRecentSearchesStorage(context : Context, list: MutableList<User1>){
         dataStore = context.createDataStore(name = "recentUserSearches")
-        val jsonString= Gson().toJson(emptyList<User1>()).toString()
+        val jsonString= Gson().toJson(list).toString()
         GlobalScope.launch(Dispatchers.IO) {
         save("recentUserSearches", jsonString)
         }

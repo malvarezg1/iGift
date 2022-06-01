@@ -2,6 +2,9 @@ package com.example.igift.data
 
 import android.util.Log
 import com.example.igift.model.User1
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 object UsersRepository {
 
@@ -22,5 +25,25 @@ object UsersRepository {
             list = getUsers().toMutableList()
         }
         return list
+    }
+
+     fun uploadRecentSearchesToFirebase(email:String){
+        GlobalScope.launch(Dispatchers.IO) {
+            val list  = UserSearchesPropertiesManager.recoverRecentSearchesFromLocalStorage()
+            Firestore.updateRecentSearches(email, list)
+        }
+    }
+
+    suspend fun downloadSearchesFromFirebase(email : String): MutableList<User1>{
+        var list = mutableListOf<User1>()
+        val ul  = Firestore.getRecentSearchesList(email)
+        if(ul == null){
+            Firestore.postRecentSearches(email)
+        }
+        else{
+            list = ul.searches
+        }
+        return list
+
     }
 }
