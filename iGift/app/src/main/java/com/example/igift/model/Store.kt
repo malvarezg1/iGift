@@ -25,7 +25,7 @@ class Store (val name : String, val image_url: String){
         }
 
         override fun toString(): String {
-            return name
+            return name + ";" + image_url
         }
 
 }

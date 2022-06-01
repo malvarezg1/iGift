@@ -25,7 +25,7 @@ class Availability (val name : String, val listaStores: List<Store>){
         }
 
         override fun toString(): String {
-            return name
+            return name + ";" + listaStores
         }
 
 }
