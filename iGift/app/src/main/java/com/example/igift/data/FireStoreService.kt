@@ -3,6 +3,8 @@ package com.example.igift.data
 import android.util.Log
 import com.example.igift.model.Product
 import com.example.igift.model.Product.Companion.toProduct
+import com.example.igift.model.RecentSearches
+import com.example.igift.model.RecentSearches.Companion.toSearchesList
 import com.example.igift.model.User1
 import com.example.igift.model.User1.Companion.toUser1
 import com.example.igift.model.Wishlist
@@ -104,6 +106,49 @@ object Firestore{
         catch(e : Exception){
             Log.e("WL", "Error updating whishlist", e)
             FirebaseCrashlytics.getInstance().log("Error getting products")
+        }
+    }
+
+    // Methods for recen searches
+    suspend fun updateRecentSearches(email : String, list: MutableList<User1>){
+        try {
+            val recentSearches = db.collection("recentSearches").document(email)
+            recentSearches.update("searches", list)
+                .addOnSuccessListener { Log.d("RS", "DocumentSnapshot successfully updated!") }
+        }
+        catch(e : Exception){
+            Log.e("WL", "Error updating recentSearches", e)
+            FirebaseCrashlytics.getInstance().log("Error getting recentSearches")
+        }
+    }
+
+    suspend fun getRecentSearchesList(email:String) : RecentSearches?{
+        return try{
+            Log.v("RS", email)
+            val mapNotNull = db.collection("recentSearches").document(email).get().await().toSearchesList()
+            Log.v("RS", mapNotNull.toString())
+            mapNotNull
+        }
+        catch (e: Exception) {
+            Log.e("RS", "Error posting whishlist", e)
+            null
+        }
+    }
+
+    fun postRecentSearches(email: String) {
+        try {
+            val data = hashMapOf(
+                "email" to email,
+                "searches" to emptyList<Product>()
+            )
+            val searchesRef = db.collection("recentSearches").document(email)
+            searchesRef.set(data).addOnSuccessListener { documentReference ->
+                Log.d("RS", "DocumentSnapshot written with ID: email ")
+            }
+            Log.v("RS", "Saving WishList On Firebase")
+        } catch (e: Exception) {
+            Log.e("RS", "Error posting whishlist", e)
+            FirebaseCrashlytics.getInstance().log("Error getting searches")
         }
     }
 }

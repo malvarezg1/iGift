@@ -15,13 +15,14 @@ import androidx.databinding.adapters.SearchViewBindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.igift.adapters.PeopleAdapter
+import com.example.igift.data.UserSearchesPropertiesManager
 import com.example.igift.databinding.FragmentPeopleSearchBinding
 import com.example.igift.databinding.FragmentWishListBinding
 import com.example.igift.viewmodel.PeopleSearchViewModel
 import com.example.igift.viewmodel.ProductViewModel
 
 class PeopleSearchFragment : Fragment() {
-    private val viewModel: PeopleSearchViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +34,8 @@ class PeopleSearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val viewModel: PeopleSearchViewModel by viewModels()
         val binding = FragmentPeopleSearchBinding.inflate(inflater, container, false)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
@@ -45,11 +48,12 @@ class PeopleSearchFragment : Fragment() {
             val profileFragment = ProfileFragment(email)
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.flFragment, profileFragment)?.commit()
-
         }
 
-        binding.personsSearchBarView.setOnQueryTextListener( object : SearchView.OnQueryTextListener,
+        binding.personsSearchBarView.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener,
             android.widget.SearchView.OnQueryTextListener {
+
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Log.v("USERS", query!!)
                 viewModel.getUsersListByQuery(query)
@@ -59,12 +63,10 @@ class PeopleSearchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                Log.v("USERS", newText!!)
-                return true
+                return false
             }
         })
 
-        Log.v("USERS", "Adapeter binded")
         return binding.root
     }
 
