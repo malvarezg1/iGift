@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
                 setContentView(R.layout.activity_main)
                 // SynchronizeLocal Storage And Cloud
-                synchronizeLocalAndCloud()
+               // synchronizeLocalAndCloud()
 
                 // Wish List Local Storage
                 lifecycleScope.launch(Dispatchers.IO){

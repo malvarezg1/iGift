@@ -28,8 +28,8 @@ class ProductViewModel :ViewModel() {
     }
 
     private fun getProductById(name:String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
+        viewModelScope.launch(Dispatchers.IO) { //lauch por que quiero que sea fire and forgett
+            try {//La corroutina vive mientras el view model exista
 
                 val recProduct = Firestore.getProductByName(name)
                 val recAvailability = Firestore.getAvailabilitiesByProductName(name)
@@ -44,7 +44,8 @@ class ProductViewModel :ViewModel() {
                         lista.add(Store(item.get("name").toString(),item.get("image_url").toString()))
 
                     }
-                    _availability.postValue(lista)
+                    _availability.postValue(lista) // Le hago post para que el observador lo vea
+                    //Va por In and out para que no haya lag sobre el main thread por UI lagging
                 }
             } catch (e: Exception) {
                 Log.d("EXC", e.toString())
