@@ -40,6 +40,8 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Connected",Toast.LENGTH_SHORT).show()
 
                 setContentView(R.layout.activity_main)
+                // SynchronizeLocal Storage And Cloud
+                synchronizeLocalAndCloud()
 
                 // Wish List Local Storage
                 lifecycleScope.launch(Dispatchers.IO){
@@ -81,8 +83,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        WishlistRepository.uploadWishListToFirebase(intent.getStringExtra("email").toString())
-        UsersRepository.uploadRecentSearchesToFirebase(intent.getStringExtra("email").toString())
+        synchronizeLocalAndCloud()
     }
 
 
@@ -91,4 +92,9 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.flFragment,fragment)
             commit()
         }
+
+    private fun synchronizeLocalAndCloud(){
+        WishlistRepository.uploadWishListToFirebase(intent.getStringExtra("email").toString())
+        UsersRepository.uploadRecentSearchesToFirebase(intent.getStringExtra("email").toString())
+    }
 }
