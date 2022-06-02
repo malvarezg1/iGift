@@ -14,7 +14,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.igift.data.WishlistPropertiesManager
 
-class ProductListAdapter( val context : Context) : ListAdapter<Product,ProductListAdapter.ProductViewHolder>(DiffCallback) {
+class ProductListAdapter( val context : Context,
+val onClickProduct : (String) -> Unit) : ListAdapter<Product,ProductListAdapter.ProductViewHolder>(DiffCallback) {
 
 
     class ProductViewHolder (private var binding : ProductListItemBinding, val context: Context) : RecyclerView.ViewHolder(binding.root){
@@ -46,6 +47,9 @@ class ProductListAdapter( val context : Context) : ListAdapter<Product,ProductLi
         val item = getItem(position)
         holder.bind(item)
         holder.setListener(context, item)
+        holder.itemView.setOnClickListener{
+            onClickProduct(item.name)
+        }
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Product>() {

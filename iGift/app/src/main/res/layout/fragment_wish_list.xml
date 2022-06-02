@@ -5,13 +5,13 @@
 <data>
     <variable
         name="viewModel"
-        type="com.example.igift.viewmodel.ProductViewModel" />
+        type="com.example.igift.viewmodel.ProductListViewModel" />
 </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context= "com.example.igift.viewmodel.ProductViewModel">
+    tools:context= "com.example.igift.viewmodel.ProductListViewModel">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/wishlist_recycler_view"

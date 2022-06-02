@@ -1,6 +1,5 @@
 package com.example.igift
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -8,18 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.databinding.adapters.SearchViewBindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.igift.adapters.PeopleAdapter
 import com.example.igift.data.UserSearchesPropertiesManager
 import com.example.igift.databinding.FragmentPeopleSearchBinding
-import com.example.igift.databinding.FragmentWishListBinding
 import com.example.igift.viewmodel.PeopleSearchViewModel
-import com.example.igift.viewmodel.ProductViewModel
 
 class PeopleSearchFragment : Fragment() {
 
