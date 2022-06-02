@@ -29,4 +29,13 @@ class User1 (val name : String, val email : String,  val image_url: String ,val 
     override fun toString(): String {
         return name
     }
+
+    override fun equals(other: Any?): Boolean {
+        var isEqual = false
+        val obj = other as User1
+        if(name == obj.name){
+            isEqual = true
+        }
+        return isEqual
+    }
 }

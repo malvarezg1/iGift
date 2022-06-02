@@ -15,7 +15,7 @@ class Product(val name: String, val category: String, val price: Double, val ima
                 val category = getString("category")!!
                 val price = getDouble("current_price")!!
                 val url = getString("image_url")!!
-                return Product(name,category, price, url)
+                return Product(name, category, price, url)
             } catch (e: Exception) {
                 Log.e(TAG, "Error converting user profile", e)
                 FirebaseCrashlytics.getInstance().log("Error converting user profile")
@@ -24,10 +24,21 @@ class Product(val name: String, val category: String, val price: Double, val ima
                 return null
             }
         }
+
         private const val TAG = "Product"
     }
 
     override fun toString(): String {
-        return name + " - "+ category
+        return name + " - " + category
     }
+
+    override fun equals(other: Any?): Boolean {
+        var isEqual = false
+        val obj = other as Product
+        if(name == obj.name){
+            isEqual = true
+        }
+        return isEqual
+    }
+
 }
