@@ -5,14 +5,14 @@ import com.example.igift.data.Firestore
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.firestore.DocumentSnapshot
 
-class Availability (val name : String, val listaStores: List<Store>){
+class Availability (val name : String, val stores: List<Store>){
 
         companion object {
             fun DocumentSnapshot.toAvailability(): Availability? {
                 try {
                     val name = getString("name")!!
-                    val listaStores = get("stores")!! as MutableList<Store>
-                    return Availability(name, listaStores)
+                    val stores = get("stores")!! as MutableList<Store>
+                    return Availability(name, stores)
                 } catch (e: Exception) {
                     Log.e(TAG, "Error converting availability item", e)
                     FirebaseCrashlytics.getInstance().log("Error converting availability item")
@@ -25,7 +25,7 @@ class Availability (val name : String, val listaStores: List<Store>){
         }
 
         override fun toString(): String {
-            return name + ";" + listaStores
+            return name + ";" + stores
         }
 
 }

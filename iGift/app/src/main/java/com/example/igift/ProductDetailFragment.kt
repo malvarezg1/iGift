@@ -10,6 +10,9 @@ import com.example.igift.databinding.FragmentProductDetailBinding
 import com.example.igift.databinding.FragmentProfileBinding
 import com.example.igift.viewmodel.ProfileViewModel
 import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.igift.adapters.RecommendationsAdapter
+import com.example.igift.adapters.StoreAdapter
 import com.example.igift.viewmodel.ProductViewModel
 
 
@@ -37,7 +40,11 @@ class ProductDetailFragment (
 
         viewModel.setName(name)
         binding.viewModel = viewModel
-1
+
+        val recommendationLayoutManager = GridLayoutManager(requireContext(), 3)
+        binding.availabilityRecyclerView.layoutManager = recommendationLayoutManager
+        binding.availabilityRecyclerView.adapter = StoreAdapter()
+
         return binding.root
     }
 

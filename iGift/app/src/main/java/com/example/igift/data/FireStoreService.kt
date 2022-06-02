@@ -138,8 +138,6 @@ object Firestore {
         }
     }
 
-}
-
 
 /*
 

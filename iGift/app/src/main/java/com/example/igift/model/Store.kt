@@ -8,10 +8,10 @@ import com.google.firebase.firestore.DocumentSnapshot
 class Store (val name : String, val image_url: String){
 
         companion object {
-            fun DocumentSnapshot.toAvailability(): Store? {
+            fun DocumentSnapshot.toStore(): Store? {
                 try {
-                    val name = getString("name")!!
                     val image_url = getString("image_url")!!
+                    val name = getString("name")!!
                     return Store(name, image_url)
                 } catch (e: Exception) {
                     Log.e(TAG, "Error converting store item", e)
